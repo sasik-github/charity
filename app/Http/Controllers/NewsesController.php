@@ -27,10 +27,40 @@ class NewsesController extends BaseController
             );
     }
 
+    public function create()
+    {
+        return view('newses.newsesNew');
+    }
+
     public function store(Request $request)
     {
-        return;
+
+        $this->validate($request, News::$rules);
+
+        News::create($request->all());
+
+        return redirect()
+            ->action('NewsesController@index');
     }
+
+    public function edit(News $news)
+    {
+        return view('newses.newsesEdit',
+                compact('news')
+        );
+    }
+
+    public function update(News $news, Request $request)
+    {
+        $this->validate($request, News::$rules);
+
+        $news->update($request->all());
+
+        return redirect()
+            ->action('NewsesController@index');
+    }
+
+
 
     public function destroy(News $news)
     {
