@@ -25,4 +25,19 @@ class Volunteer extends BaseModel
         'image',
         'points',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getNameAttribute($value)
+    {
+        return $this->user->name;
+    }
+
+    public function getTelephoneAttribute($value)
+    {
+        return $this->user->telephone;
+    }
 }

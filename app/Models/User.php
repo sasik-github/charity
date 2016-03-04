@@ -12,6 +12,7 @@ class User extends Authenticatable
         'middlename' => 'required|max:50',
 //        'email' => 'required|email|max:255|unique:users',
         'email' => 'email|max:255|unique:users',
+        'telephone' => 'required|max:255|unique:users',
         'password' => 'required|confirmed|min:6',
     ];
     /**
@@ -63,5 +64,10 @@ class User extends Authenticatable
     public function getNameAttribute($value)
     {
         return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function volunteer()
+    {
+        return $this->hasOne(Volunteer::class);
     }
 }

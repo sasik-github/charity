@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Repositories\VolunteerRepository;
 use App\Models\Volunteer;
 use Illuminate\Http\Request;
 
@@ -39,12 +40,17 @@ class VolunteersController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @param VolunteerRepository $volunteerRepository
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, VolunteerRepository $volunteerRepository)
     {
-        //
+        $this->validate($request, $volunteerRepository->getValidationRules());
+        $volunteer = $volunteerRepository->create($request->all());
+
+        return redirect()
+            ->action('VolunteersController@index');
     }
 
     /**
