@@ -32,5 +32,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::resource('/news', 'NewsesController');
+    Route::resource('/events', 'EventsController');
+    Route::resource('/volunteers', 'VolunteersController');
 
 });

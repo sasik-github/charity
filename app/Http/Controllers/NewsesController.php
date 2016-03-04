@@ -13,25 +13,28 @@ use Illuminate\Http\Request;
 
 class NewsesController extends BaseController
 {
+
+    protected $resourcePrefix = 'newses.newses';
+
     public function index()
     {
         $newses = News::paginate($this->pagination);
 
-        return view('newses.newsesIndex',
+        return $this->view('Index',
             compact('newses')
             );
     }
 
     public function show(News $news)
     {
-        return view('newses.newsesShow',
+        return $this->view('Show',
                 compact('news')
             );
     }
 
     public function create()
     {
-        return view('newses.newsesNew');
+        return $this->view('New');
     }
 
     public function store(Request $request)
@@ -47,7 +50,7 @@ class NewsesController extends BaseController
 
     public function edit(News $news)
     {
-        return view('newses.newsesEdit',
+        return $this->view('Edit',
                 compact('news')
         );
     }

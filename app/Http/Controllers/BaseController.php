@@ -14,6 +14,11 @@ use Illuminate\Routing\Controller as LaravelController;
 class BaseController extends LaravelController
 {
 
+    /**
+     * @var string префикс который используется в view('[home.home]Index')
+     */
+    protected $resourcePrefix = 'home.home';
+
     use ValidatesRequests;
 
     /**
@@ -21,4 +26,15 @@ class BaseController extends LaravelController
      * @var int
      */
     protected $pagination = 5;
+
+    /**
+     * @param null $view
+     * @param array $data
+     * @param array $mergeData
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    protected function view($view = null, $data = [], $mergeData = [])
+    {
+        return view($this->resourcePrefix . $view, $data, $mergeData);
+    }
 }
