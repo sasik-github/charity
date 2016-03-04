@@ -15,9 +15,11 @@ class NewsesController extends BaseController
 {
     public function index()
     {
-        $newses = News::all();
+        $newses = News::paginate($this->pagination);
 
-        return view('newses.newsesIndex');
+        return view('newses.newsesIndex',
+            compact('newses')
+            );
     }
 
     public function show(News $news)
@@ -59,8 +61,6 @@ class NewsesController extends BaseController
         return redirect()
             ->action('NewsesController@index');
     }
-
-
 
     public function destroy(News $news)
     {

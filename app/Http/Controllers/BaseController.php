@@ -8,9 +8,17 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as LaravelController;
 
 class BaseController extends LaravelController
 {
 
+    use ValidatesRequests;
+
+    /**
+     * количество элементе на странице
+     * @var int
+     */
+    protected $pagination = 5;
 }
