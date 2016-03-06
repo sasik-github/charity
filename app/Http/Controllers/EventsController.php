@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Repositories\OrganizerRepositories;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,21 +16,32 @@ class EventsController extends BaseController
     /**
      * Display a listing of the resource.
      *
+     * @param OrganizerRepositories $organizerRepositories
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OrganizerRepositories $organizerRepositories)
     {
-        return $this->view('Index');
+        $events = Event::paginate($this->pagination);
+        $organizers = $organizerRepositories->getOrganizersForSelectbox();
+
+        return $this->view('Index',
+            compact('events', 'organizers')
+            );
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param OrganizerRepositories $organizerRepositories
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(OrganizerRepositories $organizerRepositories)
     {
-        //
+        $organizers = $organizerRepositories->getOrganizersForSelectbox();
+
+        return $this->view('Create',
+            compact('organizers')
+            );
     }
 
     /**
@@ -62,7 +74,7 @@ class EventsController extends BaseController
      */
     public function edit(Event $event)
     {
-        return $this->view('');
+        return $this->view('Edit');
     }
 
     /**

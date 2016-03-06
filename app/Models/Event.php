@@ -16,6 +16,7 @@ class Event extends BaseModel
         'image',
         'points',
         'date',
+        'organizer_id',
     ];
 
     public static $rules = [

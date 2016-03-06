@@ -34,5 +34,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/news', 'NewsesController');
     Route::resource('/events', 'EventsController');
     Route::resource('/volunteers', 'VolunteersController');
+    Route::resource('/organizers', 'OrganizersController');
 
 });

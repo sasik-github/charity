@@ -23,6 +23,7 @@
                 <li><a href="{{ url('/news') }}">Новости</a></li>
                 <li><a href="{{ url('/events') }}">События</a></li>
                 <li><a href="{{ url('/volunteers') }}">Волонтеры</a></li>
+                <li><a href="{{ url('/organizers') }}">Организаторы</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
