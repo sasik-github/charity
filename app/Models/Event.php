@@ -17,13 +17,16 @@ class Event extends BaseModel
         'points',
         'date',
         'organizer_id',
+        'volunteer_id',
     ];
 
     public static $rules = [
-        'name',
-        'description',
+        'name' => 'required',
+        'description' => 'required',
         'image',
-        'points',
-        'date',
+        'points' => 'required',
+        'date' => 'required',
+        'organizer_id' => 'required|exists:organizers,id',
+        'volunteer_id' => 'required|exists:volunteers,id',
     ];
 }

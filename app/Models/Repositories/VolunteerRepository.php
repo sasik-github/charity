@@ -35,10 +35,11 @@ class VolunteerRepository
         $rules = Volunteer::$rules;
         $rules = array_merge($rules, User::$rules);
 
-
         if ($volunteerUserId) {
             $rules['telephone'] = 'required|max:255|unique:users,telephone,' . $volunteerUserId;
             $rules['password'] = 'min:6';
+        } else {
+            $rules['password'] = 'required|min:6';
         }
 
         return $rules;
@@ -75,5 +76,10 @@ class VolunteerRepository
         $volunteer->user->update($attributes);
 
         return $volunteer;
+    }
+
+    public function getVolunteersForSelectbox()
+    {
+        return Volunteer::all()->pluck('name', 'id');
     }
 }

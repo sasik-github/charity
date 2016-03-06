@@ -10,7 +10,7 @@ namespace App\Models\Repositories;
 
 use App\Models\Organizer;
 
-class OrganizerRepositories
+class OrganizerRepository
 {
 
     /**

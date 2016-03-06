@@ -1,3 +1,6 @@
+@inject('organizersRepos', 'App\Models\Repositories\OrganizerRepository')
+@inject('volunteersRepos', 'App\Models\Repositories\VolunteerRepository')
+
 @extends('layouts.app')
 
 @section('content')
@@ -20,11 +23,11 @@
                 <tr>
                     <th>{{ $event->id }}</th>
                     <td>{{ $event->name }}</td>
-                    <td>{{ $event->desciption}}</td>
+                    <td>{{ $event->description }}</td>
                     <td>{{ $event->image }}</td>
                     <td>{{ $event->points }}</td>
                     <td>{{ $event->date }}</td>
-                    <td>{{ $event->date }}</td>
+                    <td>@include('common.objectActions', ['objectType' => 'events', 'objectId' => $event->id, ])</td>
                 </tr>
             @endforeach
             </tbody>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\Repositories\OrganizerRepositories;
+use App\Models\Repositories\OrganizerRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,32 +16,26 @@ class EventsController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @param OrganizerRepositories $organizerRepositories
      * @return \Illuminate\Http\Response
      */
-    public function index(OrganizerRepositories $organizerRepositories)
+    public function index()
     {
         $events = Event::paginate($this->pagination);
-        $organizers = $organizerRepositories->getOrganizersForSelectbox();
 
         return $this->view('Index',
-            compact('events', 'organizers')
+            compact('events')
             );
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @param OrganizerRepositories $organizerRepositories
      * @return \Illuminate\Http\Response
      */
-    public function create(OrganizerRepositories $organizerRepositories)
+    public function create()
     {
-        $organizers = $organizerRepositories->getOrganizersForSelectbox();
+//        $organizers = $organizerRepositories->getOrganizersForSelectbox();
 
-        return $this->view('Create',
-            compact('organizers')
-            );
+        return $this->view('Create');
     }
 
     /**
@@ -52,7 +46,12 @@ class EventsController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, Event::$rules);
+
+        Event::create($request->all());
+
+        return redirect()
+            ->action('EventsController@index');
     }
 
     /**
@@ -68,35 +67,49 @@ class EventsController extends BaseController
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param Event $event
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        return $this->view('Edit');
+
+        $event = Event::findOrFail($id);
+
+
+        return $this->view('Edit',
+            compact('event')
+            );
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param Event $event
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+
+        $event = Event::findOrFail($id);
+        $this->validate($request, Event::$rules);
+        $event->update($request->all());
+
+        return redirect()
+            ->action('EventsController@index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Event $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $event->delete();
+
+        return redirect()
+            ->action('EventsController@index');
     }
 }
