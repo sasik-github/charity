@@ -10,6 +10,9 @@ namespace App\Models;
 
 class Volunteer extends BaseModel
 {
+
+    protected $table = 'volunteers';
+
     protected $fillable = [
         'user_id',
         'birthday',
@@ -33,11 +36,21 @@ class Volunteer extends BaseModel
 
     public function getNameAttribute($value)
     {
-        return $this->user->name;
+        if ($this->user) {
+            //может быть надо кинуть исключение!? потому что У ВОЛОНТЕРА ДОЛЖЕН БЫТЬ ПОЛЬЗОВАТЕЛЬ
+            return $this->user->name;
+        }
+
+        return null;
     }
 
     public function getTelephoneAttribute($value)
     {
-        return $this->user->telephone;
+        if ($this->user) {
+            return $this->user->telephone;
+            //может быть надо кинусть исключение!? потому что У ВОЛОНТЕРА ДОЛЖЕН БЫТЬ ПОЛЬЗОВАТЕЛЬ
+        }
+
+        return null;
     }
 }

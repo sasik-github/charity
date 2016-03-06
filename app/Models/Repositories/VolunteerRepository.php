@@ -29,12 +29,51 @@ class VolunteerRepository
         return $volunteer;
     }
 
-    public function getValidationRules()
+    public function getValidationRules($volunteerUserId = null)
     {
+
         $rules = Volunteer::$rules;
         $rules = array_merge($rules, User::$rules);
-        $rules['password'] = 'required|min:6';
-//        $rules['telephone'] = 'required|min:6';
+
+
+        if ($volunteerUserId) {
+            $rules['telephone'] = 'required|max:255|unique:users,telephone,' . $volunteerUserId;
+            $rules['password'] = 'min:6';
+        }
+
         return $rules;
+    }
+
+    /**
+     * @param Volunteer $volunteer
+     * @return Volunteer
+     */
+    public function prepareToEditForm(Volunteer $volunteer)
+    {
+        $volunteer->lastname = $volunteer->user->lastname;
+        $volunteer->middlename = $volunteer->user->middlename;
+        $volunteer->firstname = $volunteer->user->firstname;
+
+        return $volunteer;
+    }
+
+    /**
+     * @param Volunteer $volunteer
+     * @param array $attributes
+     * @return Volunteer
+     */
+    public function update(Volunteer $volunteer, array $attributes)
+    {
+        $volunteer->update($attributes);
+
+        if (array_key_exists('password', $attributes)) {
+            if (empty($attributes['password'])) {
+                unset($attributes['password']);
+            }
+        }
+
+        $volunteer->user->update($attributes);
+
+        return $volunteer;
     }
 }

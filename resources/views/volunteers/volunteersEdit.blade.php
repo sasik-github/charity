@@ -11,7 +11,7 @@
     </div>
 
     <div class="row">
-        {!! Form::model($volunteer, ['action' => 'VolunteersController@store', 'class' => 'form', 'files' => true]) !!}
+        {!! Form::model($volunteer, ['action' => ['VolunteersController@update', $volunteer->id], 'class' => 'form', 'files' => true, 'method' => 'patch']) !!}
 
             @include('volunteers._volunteerForm', ['submitButtonText' => 'Сохранить'])
 

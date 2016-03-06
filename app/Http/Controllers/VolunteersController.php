@@ -59,8 +59,10 @@ class VolunteersController extends BaseController
      * @param Volunteer $volunteer
      * @return \Illuminate\Http\Response
      */
-    public function show(Volunteer $volunteer)
+    public function show($id)
     {
+        $volunteer = Volunteer::findOrFail($id);
+
         return $this->view('Show',
             compact('volunteer')
             );
@@ -69,11 +71,16 @@ class VolunteersController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Volunteer $volunteer
+     * @param VolunteerRepository $volunteerRepository
+     * @param $id
      * @return \Illuminate\Http\Response
+     * @internal param Volunteer $volunteer
      */
-    public function edit(Volunteer $volunteer)
+    public function edit(VolunteerRepository $volunteerRepository, $id)
     {
+        $volunteer = Volunteer::findOrFail($id);
+        $volunteerRepository->prepareToEditForm($volunteer);
+
         return $this->view('Edit',
             compact('volunteer')
             );
@@ -83,12 +90,22 @@ class VolunteersController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param Volunteer $volunteer
+     * @param $id
+     * @param VolunteerRepository $volunteerRepository
      * @return \Illuminate\Http\Response
+     * @internal param Volunteer $volunteer
      */
-    public function update(Request $request, Volunteer $volunteer)
+    public function update(Request $request, $id, VolunteerRepository $volunteerRepository)
     {
-        //
+
+        $volunteer = Volunteer::findOrFail($id);
+
+        $this->validate($request, $volunteerRepository->getValidationRules($volunteer->user->id));
+
+        $volunteerRepository->update($volunteer, $request->all());
+
+        return redirect()
+            ->action('VolunteersController@index');
     }
 
     /**
