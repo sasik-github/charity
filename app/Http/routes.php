@@ -36,4 +36,17 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/volunteers', 'VolunteersController');
     Route::resource('/organizers', 'OrganizersController');
 
+    Route::get('/about', 'AboutController@getIndex');
+    Route::get('/about/edit', 'AboutController@getEdit');
+    Route::post('/about/edit', 'AboutController@postEdit');
+
+});
+
+
+Route::group(['prefix' => 'api/', 'middleware' => ['api']], function() {
+    Route::get('authorize', 'API\VolunteersController@auth');
+
+    Route::get('events', 'API\EventsController@getAllEvents');
+
+    Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
 });

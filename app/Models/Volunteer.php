@@ -53,4 +53,9 @@ class Volunteer extends BaseModel
 
         return null;
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'rel_volunteer_event', 'volunteer_id', 'event_id');
+    }
 }

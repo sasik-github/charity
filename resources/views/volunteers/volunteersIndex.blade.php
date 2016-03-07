@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
+@section('title')
+    Список волонтеров
+@endsection
+
 @section('content')
+
+    <h1>Список волонтеров</h1>
+
+    <div class="row">
+        <a href="{{ route('volunteers.create') }}" class="btn btn-primary">Создать</a>
+    </div>
 
     <div class="row">
         <table class="table table-stripped">
@@ -22,7 +32,9 @@
                     <td>{{ $volunteer->telephone}}</td>
                     <td>{{ $volunteer->points }}</td>
                     <td>{{ $volunteer->birthday }}</td>
-                    <td>{{ $volunteer->birthday }}</td>
+                    <td>
+                        @include('common.objectActions', ['objectType' => 'volunteers', 'objectId' => $volunteer->id, ])
+                    </td>
                 </tr>
             @endforeach
             </tbody>

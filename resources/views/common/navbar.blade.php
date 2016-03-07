@@ -21,6 +21,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 <li><a href="{{ url('/news') }}">Новости</a></li>
+                <li><a href="{{ url('/about') }}">О Компании</a></li>
                 <li><a href="{{ url('/events') }}">События</a></li>
                 <li><a href="{{ url('/volunteers') }}">Волонтеры</a></li>
                 <li><a href="{{ url('/organizers') }}">Организаторы</a></li>

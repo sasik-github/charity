@@ -3,7 +3,17 @@
 
 @extends('layouts.app')
 
+@section('title')
+    Список событий
+@endsection
+
 @section('content')
+
+    <h1>Список событий</h1>
+
+    <div class="row">
+        <a href="{{ route('events.create') }}" class="btn btn-primary">Создать</a>
+    </div>
 
     <div class="row">
         <table class="table table-stripped">

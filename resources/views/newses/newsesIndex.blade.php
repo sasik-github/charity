@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
+@section('title')
+    Новости
+@endsection
+
 @section('content')
+
+    {{--<div class="row">--}}
+        <h1>Новости</h1>
+    {{--</div>--}}
 
     <div class="row">
         @foreach($newses as $news)
