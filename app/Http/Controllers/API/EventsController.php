@@ -9,6 +9,9 @@ namespace App\Http\Controllers\API;
 
 
 use App\Models\Event;
+use App\Models\Repositories\EventRepository;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class EventsController extends BaseController
 {
@@ -43,4 +46,19 @@ class EventsController extends BaseController
     {
         return Event::all();
     }
+
+    public function getEventsByDate($date, EventRepository $eventRepository)
+    {
+        $date = Carbon::createFromTimestamp(time());
+        return $eventRepository->getEventsByDate($date);
+
+    }
+
+    public function getDateInMonth($date, $eventRepository)
+    {
+        $date = Carbon::createFromTimestamp(time());
+        return $eventRepository->getEventDate($date);
+    }
+
+
 }

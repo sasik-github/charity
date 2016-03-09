@@ -57,12 +57,16 @@ class EventsController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param Event $event
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        return $this->view('Show');
+        $event = Event::findOrFail($id);
+
+        return $this->view('Show',
+            compact('event')
+        );
     }
 
     /**

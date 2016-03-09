@@ -31,6 +31,10 @@ class Event extends BaseModel
         'volunteer_id' => 'required|exists:volunteers,id',
     ];
 
+    protected $dates = [
+        'date',
+    ];
+
     public function volunteers()
     {
         return $this->belongsToMany(Volunteer::class, 'rel_volunteer_event', 'event_id', 'volunteer_id');

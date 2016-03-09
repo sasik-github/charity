@@ -61,10 +61,15 @@ class VolunteersController extends BaseController
      */
     public function show($id)
     {
+        /**
+         * @var $volunteer Volunteer
+         */
         $volunteer = Volunteer::findOrFail($id);
 
+        $events = $volunteer->events;
+
         return $this->view('Show',
-            compact('volunteer')
+            compact('volunteer', 'events')
             );
     }
 

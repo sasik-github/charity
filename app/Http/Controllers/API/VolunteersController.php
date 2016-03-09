@@ -15,6 +15,19 @@ use Validator;
 
 class VolunteersController extends BaseController
 {
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
+     * VolunteersController constructor.
+     */
+    public function __construct()
+    {
+        $this->user = auth()->user();
+    }
+
 
     /**
      * @api {get} /authorize получить информацию о пользователе
@@ -48,9 +61,8 @@ class VolunteersController extends BaseController
      */
     public function auth()
     {
-        $user = auth()->user();
 
-        $volunteer = $user->volunteer;
+        $volunteer = $this->user->volunteer;
 
         return $user;
     }
@@ -117,4 +129,5 @@ class VolunteersController extends BaseController
         $volunteer = $volunteerRepository->create($request->all());
         return $volunteer;
     }
+
 }
