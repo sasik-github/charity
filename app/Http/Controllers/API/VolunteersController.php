@@ -108,17 +108,6 @@ class VolunteersController extends BaseController
     public function register(Request $request, VolunteerRepository $volunteerRepository)
     {
 
-//            'lastname' => 'required|max:50',
-//        'firstname' => 'required|max:50',
-//        'middlename' => 'required|max:50',
-////        'email' => 'required|email|max:255|unique:users',
-//        'email' => 'email|max:255|unique:users',
-//        'telephone' => 'required|max:255|unique:users',
-//        'password' => 'required|confirmed|min:6',
-//        'birthday',
-//        'workplace',
-//        'image',
-//        'points',
         $validator = Validator::make($request->all(), $volunteerRepository->getValidationRules());
 
         if ($validator->fails()) {

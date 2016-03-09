@@ -36,7 +36,7 @@ class VolunteerRepository
         $rules = array_merge($rules, User::$rules);
 
         if ($volunteerUserId) {
-            $rules['telephone'] = 'required|max:255|unique:users,telephone,' . $volunteerUserId;
+            $rules['telephone'] = 'required|min:11|max:11|unique:users,telephone,' . $volunteerUserId;
             $rules['password'] = 'min:6';
         } else {
             $rules['password'] = 'required|min:6';
