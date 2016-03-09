@@ -43,10 +43,15 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 
-Route::group(['prefix' => 'api/', 'middleware' => ['api']], function() {
-    Route::get('authorize', 'API\VolunteersController@auth');
+Route::group(['prefix' => 'api/'], function() {
 
-    Route::get('events', 'API\EventsController@getAllEvents');
+    Route::get('newses', 'API\NewsesController@getNewses');
 
-    Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
+    Route::group(['middleware' => ['api']], function() {
+        Route::get('authorize', 'API\VolunteersController@auth');
+
+        Route::get('events', 'API\EventsController@getAllEvents');
+
+        Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
+    });
 });
