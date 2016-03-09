@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\Repositories\OrganizerRepository;
+use App\Models\Modifications\DateModificationEvent;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -77,8 +77,9 @@ class EventsController extends BaseController
     public function edit($id)
     {
 
-        $event = Event::findOrFail($id);
+        $event = DateModificationEvent::findOrFail($id);
 
+//        o $event->date;
 
         return $this->view('Edit',
             compact('event')
@@ -94,7 +95,6 @@ class EventsController extends BaseController
      */
     public function update(Request $request, $id)
     {
-
         $event = Event::findOrFail($id);
         $this->validate($request, Event::$rules);
         $event->update($request->all());

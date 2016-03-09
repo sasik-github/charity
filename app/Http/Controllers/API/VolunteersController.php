@@ -64,7 +64,7 @@ class VolunteersController extends BaseController
 
         $volunteer = $this->user->volunteer;
 
-        return $user;
+        return $this->user;
     }
 
     /**

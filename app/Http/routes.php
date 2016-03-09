@@ -53,7 +53,8 @@ Route::group(['prefix' => 'api/'], function() {
         Route::get('authorize', 'API\VolunteersController@auth');
 
         Route::get('events', 'API\EventsController@getAllEvents');
-        Route::get('events/all-date/{date}', 'API\EventsController@getEventsByDate');
+        Route::get('events/by-date/{date}', 'API\EventsController@getEventsByDate');
+        Route::get('events/dates/{date}', 'API\EventsController@getDateInMonth');
 
 
         Route::get('organizers', 'API\OrganizersController@getAllOrganizers');

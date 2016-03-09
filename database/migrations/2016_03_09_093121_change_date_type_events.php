@@ -13,6 +13,9 @@ class ChangeDateTypeEvents extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
+//            $table->dropColumn('date');
+            $table->timestamp('date');
+
         });
     }
 
@@ -24,7 +27,8 @@ class ChangeDateTypeEvents extends Migration
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            //
+//            $table->dropColumn('date');
+            $table->date('date');
         });
     }
 }
