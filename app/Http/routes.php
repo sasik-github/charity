@@ -47,6 +47,8 @@ Route::group(['prefix' => 'api/'], function() {
 
     Route::get('newses', 'API\NewsesController@getNewses');
 
+    Route::post('user/register', 'API\VolunteersController@register');
+
     Route::group(['middleware' => ['api']], function() {
         Route::get('authorize', 'API\VolunteersController@auth');
 

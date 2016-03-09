@@ -23,6 +23,11 @@
 </div>
 
 <div class="form-group">
+    <label for="title">Место</label>
+    {!! Form::text('place', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
     <label for="text">Фото</label>
     {!! Form::file('image', ['class' => '']) !!}
 </div>

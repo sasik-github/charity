@@ -16,6 +16,7 @@ class Event extends BaseModel
         'image',
         'points',
         'date',
+        'place',
         'organizer_id',
         'volunteer_id',
     ];
@@ -33,5 +34,10 @@ class Event extends BaseModel
     public function volunteers()
     {
         return $this->belongsToMany(Volunteer::class, 'rel_volunteer_event', 'event_id', 'volunteer_id');
+    }
+
+    public function organizer()
+    {
+        return $this->belongsTo(Organizer::class);
     }
 }

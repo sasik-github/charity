@@ -14,7 +14,6 @@ class Volunteer extends BaseModel
     protected $table = 'volunteers';
 
     protected $fillable = [
-        'user_id',
         'birthday',
         'workplace',
         'image',
@@ -22,7 +21,6 @@ class Volunteer extends BaseModel
     ];
 
     public static $rules = [
-        'user_id',
         'birthday',
         'workplace',
         'image',

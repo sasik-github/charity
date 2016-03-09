@@ -9,6 +9,10 @@ namespace App\Http\Controllers\API;
 
 
 
+use App\Models\Repositories\VolunteerRepository;
+use Illuminate\Http\Request;
+use Validator;
+
 class VolunteersController extends BaseController
 {
 
@@ -49,5 +53,79 @@ class VolunteersController extends BaseController
         $volunteer = $user->volunteer;
 
         return $user;
+    }
+
+    /**
+     *
+     * /**
+     * @api {post} /user/register регистрация пользователя
+     * @apiName register
+     * @apiGroup Volunteers
+     *
+     * @apiParam {String} firstname имя
+     * @apiParam {String} lastname  фамилия
+     * @apiParam {String} middlename  отчество
+     * @apiParam {String} [email] почта
+     * @apiParam {String} telephone телефон (Unique)
+     * @apiParam {String} password пароль
+     * @apiParam {Date} [birthday] день рождения
+     * @apiParam {String} [workplace] место работы
+     * @apiParam {String} [image] имя картинки, должно быть предварительно сохранена
+     * @apiParam {Integer} [points] количество балов
+     *
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     *
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422
+     *     {
+                "errors": {
+                    "lastname": [
+                        "The lastname field is required."
+                    ],
+                    "firstname": [
+                        "The firstname field is required."
+                    ],
+                    "middlename": [
+                        "The middlename field is required."
+                    ],
+                    "telephone": [
+                        "The telephone field is required."
+                    ],
+                    "password": [
+                        "The password field is required."
+                    ]
+                }
+            }
+     *
+     * @param Request $request
+     * @param VolunteerRepository $volunteerRepository
+     * @return \App\Models\Volunteer|\Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function register(Request $request, VolunteerRepository $volunteerRepository)
+    {
+
+//            'lastname' => 'required|max:50',
+//        'firstname' => 'required|max:50',
+//        'middlename' => 'required|max:50',
+////        'email' => 'required|email|max:255|unique:users',
+//        'email' => 'email|max:255|unique:users',
+//        'telephone' => 'required|max:255|unique:users',
+//        'password' => 'required|confirmed|min:6',
+//        'birthday',
+//        'workplace',
+//        'image',
+//        'points',
+        $validator = Validator::make($request->all(), $volunteerRepository->getValidationRules());
+
+        if ($validator->fails()) {
+            return response(['errors' => $validator->messages()], 422);
+        }
+
+        $volunteer = $volunteerRepository->create($request->all());
+        return $volunteer;
     }
 }
