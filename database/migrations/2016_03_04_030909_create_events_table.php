@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->text('description');
             $table->string('image');
             $table->unsignedInteger('points');
-            $table->date('date');
+            $table->timestamp('date');
             $table->timestamps();
         });
     }
