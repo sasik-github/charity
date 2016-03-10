@@ -79,7 +79,7 @@ class EventsController extends BaseController
     public function edit($id)
     {
 
-        $event = DateModificationEvent::findOrFail($id);
+        $event = Event::findOrFail($id);
 
 //        o $event->date;
 
@@ -93,6 +93,7 @@ class EventsController extends BaseController
      *
      * @param  \Illuminate\Http\Request $request
      * @param $id
+     * @param EventRepository $eventRepository
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id, EventRepository $eventRepository)
