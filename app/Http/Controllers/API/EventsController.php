@@ -85,6 +85,9 @@ class EventsController extends BaseController
                 "date": "2016-03-09 11:00:01"
             }
         ]
+     * @param $timestamp
+     * @param EventRepository $eventRepository
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getEventsByDate($timestamp, EventRepository $eventRepository)
     {
@@ -102,11 +105,14 @@ class EventsController extends BaseController
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
-        [
-            "09.03.2016",
-            "10.03.2016",
-            "08.03.2016"
-        ]
+      [
+         "09.03.2016",
+         "10.03.2016",
+         "08.03.2016"
+      ]
+     * @param $timestamp
+     * @param EventRepository $eventRepository
+     * @return array
      */
     public function getDateInMonth($timestamp, EventRepository $eventRepository)
     {
