@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Modifications\DateModificationEvent;
-use Carbon\Carbon;
+use App\Models\Repositories\EventRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -42,14 +42,15 @@ class EventsController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @param EventRepository $eventRepository
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, EventRepository $eventRepository)
     {
         $this->validate($request, Event::$rules);
 
-        Event::create($request->all());
+        $eventRepository->create($request->all());
 
         return redirect()
             ->action('EventsController@index');
@@ -94,14 +95,16 @@ class EventsController extends BaseController
      * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, EventRepository $eventRepository)
     {
 
-        dd(Carbon::createFromFormat('Y-m-dh:m', $request->get('date')));
-
+//        dd($request->all());
+        /**
+         * @var $event Event
+         */
         $event = Event::findOrFail($id);
         $this->validate($request, Event::$rules);
-        $event->update($request->all());
+        $eventRepository->update($event, $request->all());
 
         return redirect()
             ->action('EventsController@index');

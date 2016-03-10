@@ -16,6 +16,38 @@ class EventRepository
 {
 
     /**
+     * @param $attributes
+     * @return Event
+     */
+    public function create($attributes)
+    {
+        $event = new Event();
+        $this->resolveDatetimePickerProblem($event);
+        $event->fill($attributes);
+        $event->save();
+        return $event;
+    }
+
+    /**
+     * @param Event $event
+     * @param $attributes
+     * @return Event
+     */
+    public function update(Event $event, $attributes)
+    {
+        $this->resolveDatetimePickerProblem($event);
+        $event->update($attributes);
+
+        return $event;
+    }
+
+    private function resolveDatetimePickerProblem(Event $event)
+    {
+        $event->setDateFormat('Y-m-d H:i');
+        return $event;
+    }
+
+    /**
      * получитс список событий на дату $date
      *
      * @param $date

@@ -27,6 +27,12 @@
     </div>
 </div>
 
+{{--<div class="form-group">--}}
+    {{--<label for="title">Дата</label>--}}
+    {{--{!! Form::date('date', null, ['class' => 'form-control']) !!}--}}
+{{--</div>--}}
+
+
 <div class="form-group">
     <label for="title">Место</label>
     {!! Form::text('place', null, ['class' => 'form-control']) !!}
@@ -49,10 +55,4 @@
 
 {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}
 
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker2').datetimepicker({
-            locale: 'ru'
-        });
-    });
-</script>
+

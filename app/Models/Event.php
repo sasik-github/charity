@@ -47,4 +47,7 @@ class Event extends BaseModel
     {
         return $this->belongsTo(Organizer::class);
     }
+
+//    protected $dateFormat = 'd.m.Y H:m';
+//    dd(Carbon::createFromFormat('d.m.Y H:m', $request->get('date')));
 }

@@ -22,6 +22,7 @@ elixir(function(mix) {
 
     mix.scripts(
         [
+            '../../../node_modules/moment/min/moment-with-locales.min.js',
             'bootstrap-datetimepicker.min.js'
         ]
     );
@@ -30,4 +31,6 @@ elixir(function(mix) {
         'css/all.css',
         'js/all.js'
     ]);
+
+    mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap/', 'public/build/fonts/bootstrap/');
 });
