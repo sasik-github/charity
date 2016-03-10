@@ -11,7 +11,7 @@ namespace App\Http\Controllers\API;
 use App\Files\FileSystem;
 use Illuminate\Http\Request;
 
-class FileController
+class FileController extends BaseController
 {
     public function upload(Request $request, FileSystem $fileSystem)
     {
