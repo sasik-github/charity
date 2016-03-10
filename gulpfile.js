@@ -17,13 +17,16 @@ elixir(function(mix) {
         .sass('app.scss')
         .styles([
             '../../../public/css/app.css',
-            'bootstrap-datetimepicker.min.css'
+            'vendor/bootstrap-datetimepicker.min.css',
+            'vendor/dropzone.css'
         ]);
 
     mix.scripts(
         [
             '../../../node_modules/moment/min/moment-with-locales.min.js',
-            'bootstrap-datetimepicker.min.js'
+            'vendor/bootstrap-datetimepicker.min.js',
+            'vendor/dropzone.js',
+            'fileuploader.js',
         ]
     );
 

@@ -40,7 +40,12 @@
 
 <div class="form-group">
     <label for="text">Фото</label>
-    {!! Form::file('image', ['class' => '']) !!}
+    @if (isset($event) && !empty($event->image))
+        <div class="fileuploader dropzone"  data-download-path="/files/{{ $event->image }}" data-max-files="1"></div>
+    @else
+        <div class="fileuploader dropzone" data-max-files="1"></div>
+    @endif
+
 </div>
 
 <div class="form-group">

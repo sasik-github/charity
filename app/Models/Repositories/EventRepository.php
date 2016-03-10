@@ -24,6 +24,7 @@ class EventRepository
         $event = new Event();
         $this->resolveDatetimePickerProblem($event);
         $event->fill($attributes);
+        $event->image = $this->handleImageName($attributes);
         $event->save();
         return $event;
     }
@@ -36,9 +37,24 @@ class EventRepository
     public function update(Event $event, $attributes)
     {
         $this->resolveDatetimePickerProblem($event);
+        $event->image = $this->handleImageName($attributes);
         $event->update($attributes);
 
         return $event;
+    }
+
+    /**
+     * @param $attributes
+     * @return string
+     */
+    private function handleImageName($attributes)
+    {
+        if (!array_key_exists('filename', $attributes)) {
+            return null;
+        }
+
+        return $attributes['filename'][0];
+
     }
 
     private function resolveDatetimePickerProblem(Event $event)
