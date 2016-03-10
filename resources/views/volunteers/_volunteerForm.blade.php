@@ -35,7 +35,7 @@
 
 <div class="form-group">
     <label for="text">Фото</label>
-    {!! Form::file('image', ['class' => '']) !!}
+    @include('common.fileUploader', ['obj' => isset($volunteer) ? $volunteer : null])
 </div>
 
 <div class="form-group">

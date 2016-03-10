@@ -1,6 +1,7 @@
 <?php
 namespace App\Models\Repositories;
 
+use App\Files\FileSystem;
 use App\Models\User;
 use App\Models\Volunteer;
 
@@ -11,6 +12,20 @@ use App\Models\Volunteer;
  */
 class VolunteerRepository
 {
+
+    /**
+     * @var FileSystem
+     */
+    private $filesystem;
+    /**
+     * VolunteerRepository constructor.
+     * @param FileSystem $fileSystem
+     */
+    public function __construct(FileSystem $fileSystem)
+    {
+        $this->filesystem = $fileSystem;
+    }
+
 
     /**
      * создает пользователя и присоединяет волонтерка к нему
@@ -24,6 +39,7 @@ class VolunteerRepository
         $volunteer
             ->user()
             ->associate($user);
+        $volunteer->image = $this->filesystem->getFilenameFromPost($attributes);
         $volunteer->save();
 
         return $volunteer;
@@ -65,7 +81,10 @@ class VolunteerRepository
      */
     public function update(Volunteer $volunteer, array $attributes)
     {
+
         $volunteer->update($attributes);
+        $volunteer->image = $this->filesystem->getFilenameFromPost($attributes);
+        $volunteer->save();
 
         if (array_key_exists('password', $attributes)) {
             if (empty($attributes['password'])) {
@@ -76,6 +95,11 @@ class VolunteerRepository
         $volunteer->user->update($attributes);
 
         return $volunteer;
+    }
+
+    private function getImageName($attributes)
+    {
+
     }
 
     public function getVolunteersForSelectbox()

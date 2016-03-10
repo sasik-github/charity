@@ -25,4 +25,13 @@ class FileSystem
         $file->move($dest, $filenameFull);
         return $filenameFull;
     }
+
+    public function getFilenameFromPost($attributes)
+    {
+        if (!array_key_exists('filename', $attributes)) {
+            return null;
+        }
+
+        return $attributes['filename'][0];
+    }
 }

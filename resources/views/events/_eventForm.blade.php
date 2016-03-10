@@ -40,11 +40,7 @@
 
 <div class="form-group">
     <label for="text">Фото</label>
-    @if (isset($event) && !empty($event->image))
-        <div class="fileuploader dropzone"  data-download-path="/files/{{ $event->image }}" data-max-files="1"></div>
-    @else
-        <div class="fileuploader dropzone" data-max-files="1"></div>
-    @endif
+    @include('common.fileUploader', ['obj' => isset($event) ? $event : null])
 
 </div>
 

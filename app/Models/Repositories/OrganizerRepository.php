@@ -20,4 +20,14 @@ class OrganizerRepository
     {
         return Organizer::all()->pluck('name', 'id')->toArray();
     }
+
+    public function create($attributes)
+    {
+        
+    }
+
+    public function update(Organizer $organizer, $attributes)
+    {
+        
+    }
 }
