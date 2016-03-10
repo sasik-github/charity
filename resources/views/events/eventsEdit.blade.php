@@ -11,10 +11,12 @@
     </div>
 
     <div class="row">
-        {!! Form::model($event, ['action' => ['EventsController@update', $event->id], 'class' => 'form', 'files' => true, 'method' => 'patch']) !!}
+        <div class="col-md-12">
+            {!! Form::model($event, ['action' => ['EventsController@update', $event->id], 'class' => 'form', 'files' => true, 'method' => 'patch']) !!}
 
-            @include('events._eventForm', ['submitButtonText' => 'Сохранить'])
+                @include('events._eventForm', ['submitButtonText' => 'Сохранить'])
 
-        {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
     </div>
 @endsection
