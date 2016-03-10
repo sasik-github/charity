@@ -19,7 +19,12 @@
 
 <div class="form-group">
     <label for="title">Дата</label>
-    {!! Form::date('date', null, ['class' => 'form-control']) !!}
+    <div class='input-group date' id='datetimepicker2'>
+        {!! Form::text('date', null, ['class' => 'form-control']) !!}
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
 </div>
 
 <div class="form-group">
@@ -43,3 +48,11 @@
 </div>
 
 {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+            locale: 'ru'
+        });
+    });
+</script>

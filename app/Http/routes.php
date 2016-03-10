@@ -49,6 +49,9 @@ Route::group(['prefix' => 'api/'], function() {
 
     Route::post('user/register', 'API\VolunteersController@register');
 
+    Route::post('files/upload', 'API\FileController@upload');
+
+
     Route::group(['middleware' => ['api']], function() {
         Route::get('authorize', 'API\VolunteersController@auth');
 

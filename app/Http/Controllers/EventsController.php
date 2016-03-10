@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Modifications\DateModificationEvent;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -95,6 +96,9 @@ class EventsController extends BaseController
      */
     public function update(Request $request, $id)
     {
+
+        dd(Carbon::createFromFormat('Y-m-dh:m', $request->get('date')));
+
         $event = Event::findOrFail($id);
         $this->validate($request, Event::$rules);
         $event->update($request->all());
