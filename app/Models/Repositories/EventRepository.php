@@ -9,8 +9,8 @@ namespace App\Models\Repositories;
 
 
 use App\Models\Event;
+use App\Models\Modifications\WithOrganizationEvent;
 use Carbon\Carbon;
-use DB;
 
 class EventRepository
 {
@@ -23,7 +23,7 @@ class EventRepository
      */
     public function getEventsByDate(Carbon $date)
     {
-        return Event::
+        return WithOrganizationEvent::
             where([['date', '>=', $date->startOfDay()->toDateTimeString()] , ['date', '<=', $date->endOfDay()->toDateTimeString()]])
             ->get();
     }
