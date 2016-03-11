@@ -8,6 +8,8 @@
 namespace App\Models;
 
 
+use Carbon\Carbon;
+
 class Event extends BaseModel
 {
 
@@ -37,6 +39,12 @@ class Event extends BaseModel
     protected $dates = [
         'date',
     ];
+
+    public function scopePast($query)
+    {
+        $now = Carbon::now()->startOfDay();
+        return $query->where('date', '<=', $now);
+    }
 
     public function volunteers()
     {

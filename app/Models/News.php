@@ -8,7 +8,6 @@
 namespace App\Models;
 
 
-use App\Files\ImageHandler;
 use App\Models\Modifications\ModelWithImageTrait;
 
 class News extends BaseModel
