@@ -137,19 +137,18 @@ class EventsController extends BaseController
     }
 
     /**
-     * @api {get} /events/dates/{timestamp} получить все даты по $timestamp дате в текущем месяце
-     * @apiName getDateInMonth
+     * @api {post} /events/accept/{event} текущий пользователь принимает участие в {event}
+     * @apiName acceptEvent
      * @apiGroup Events
      *
-     * @apiParam {Int} timestamp таймстэмп даты, по месяцу которой, вы хотите получить даты
+     * @apiParam {Int} event id события
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
-     * @param Request $request
      * @param Event $event
      * @return array
      */
-    public function acceptEvent(Request $request, Event $event)
+    public function acceptEvent(Event $event)
     {
         $volunteer = $this->getVolunteer();
         if ($volunteer->events->contains($event)) {
