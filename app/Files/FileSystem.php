@@ -28,8 +28,6 @@ class FileSystem
 
     public function getFilenameFromPost($attributes)
     {
-        if (array_key_exists('image'))
-
         if (!array_key_exists('filename', $attributes)) {
             return null;
         }
