@@ -8,8 +8,13 @@
 namespace App\Models;
 
 
+use App\Models\Modifications\ModelWithImageTrait;
+
 class Organizer extends BaseModel
 {
+
+    use ModelWithImageTrait;
+
     public static $rules = [
         'name' => 'required',
         'description' => 'required',

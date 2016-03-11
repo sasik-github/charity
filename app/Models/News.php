@@ -9,9 +9,13 @@ namespace App\Models;
 
 
 use App\Files\ImageHandler;
+use App\Models\Modifications\ModelWithImageTrait;
 
 class News extends BaseModel
 {
+
+    use ModelWithImageTrait;
+
     protected $table = 'newses';
 
     public static $rules = [
@@ -24,24 +28,4 @@ class News extends BaseModel
         'image',
     ];
 
-    /**
-     * @param array $attributes
-     * @return News
-     */
-    public static function  create(array $attributes = [])
-    {
-        $attributes['image'] = self::getImageName($attributes);
-        return parent::create($attributes);
-    }
-
-    public function update(array $attributes = [], array $options = [])
-    {
-        $attributes['image'] = self::getImageName($attributes);
-        return parent::update($attributes, $options);
-    }
-
-    protected static function getImageName($attributes)
-    {
-        return ImageHandler::handle($attributes);
-    }
 }

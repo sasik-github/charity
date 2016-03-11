@@ -21,7 +21,7 @@
 
 <div class="form-group">
     <label for="text">Логотип</label>
-    {!! Form::file('image', ['class' => '']) !!}
+    @include('common.fileUploader', ['obj' => isset($organizer) ? $organizer : null])
 </div>
 
 <div class="form-group">
