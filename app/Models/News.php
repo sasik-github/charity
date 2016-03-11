@@ -8,6 +8,8 @@
 namespace App\Models;
 
 
+use App\Files\ImageHandler;
+
 class News extends BaseModel
 {
     protected $table = 'newses';
@@ -21,4 +23,25 @@ class News extends BaseModel
         'text',
         'image',
     ];
+
+    /**
+     * @param array $attributes
+     * @return News
+     */
+    public static function  create(array $attributes = [])
+    {
+        $attributes['image'] = self::getImageName($attributes);
+        return parent::create($attributes);
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        $attributes['image'] = self::getImageName($attributes);
+        return parent::update($attributes, $options);
+    }
+
+    protected static function getImageName($attributes)
+    {
+        return ImageHandler::handle($attributes);
+    }
 }

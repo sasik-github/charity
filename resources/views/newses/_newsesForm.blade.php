@@ -10,7 +10,8 @@
 
 <div class="form-group">
     <label for="text">Картинка</label>
-    {!! Form::file('image', ['class' => '']) !!}
+    @include('common.fileUploader', ['obj' => isset($news) ? $news : null])
+
 </div>
 
 {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary']) !!}

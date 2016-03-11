@@ -26,13 +26,15 @@ class FileSystem
         return $filenameFull;
     }
 
+    /**
+     * @deprecated
+     * @param $attributes
+     * @return null
+     *
+     */
     public function getFilenameFromPost($attributes)
     {
-        if (!array_key_exists('filename', $attributes)) {
-            return null;
-        }
-
-        return $attributes['filename'][0];
+        return ImageHandler::handle($attributes);
     }
 
     public function path($imageName)

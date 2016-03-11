@@ -171,7 +171,7 @@ class VolunteersController extends BaseController
         }
 
         $volunteer = $volunteerRepository->update($volunteer, $request->all());
-        return $volunteer;
+        return [];
     }
 
 }
