@@ -1,3 +1,5 @@
+@inject('fileSystem', 'App\Files\FileSystem')
+
 @extends('layouts.app')
 
 @section('title')
@@ -13,7 +15,7 @@
     <div class="row">
         @foreach($newses as $news)
             <div class="col-md-4">
-                <img src="{{ $news->image }}" alt="" class="img-responsive">
+                <img src="{{ $fileSystem->path($news->image) }}" alt="" class="img-responsive">
                 <h2>
                     {{ $news->title }}
                 </h2>
