@@ -81,7 +81,7 @@ class VolunteerRepository
      */
     public function update(Volunteer $volunteer, array $attributes)
     {
-
+        dd($attributes);
         $volunteer->update($attributes);
         if (array_key_exists('image', $attributes) && !empty($attributes['image'])) {
             $volunteer->image = $attributes['image'];
