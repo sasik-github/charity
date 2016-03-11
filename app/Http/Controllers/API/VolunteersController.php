@@ -70,7 +70,7 @@ class VolunteersController extends BaseController
     /**
      *
      * /**
-     * @api {post} /user/register регистрация пользователя
+     * @api {post} /user/register регистрация пользователя  (BASIC AUTH не нужен)
      * @apiName register
      * @apiGroup Volunteers
      *
@@ -130,6 +130,37 @@ class VolunteersController extends BaseController
         return $volunteer;
     }
 
+    /**
+     *
+     * /**
+     * @api {post} /user/update обновить информацию о пользователе(к этому запросу уже надо подстовлять BASIC AUTH)
+     * @apiName update
+     * @apiGroup Volunteers
+     *
+     * @apiParam {String} firstname имя
+     * @apiParam {String} lastname  фамилия
+     * @apiParam {String} middlename  отчество
+     * @apiParam {String} [email] почта
+     * @apiParam {String} telephone телефон (Unique)
+     * @apiParam {String} password пароль
+     * @apiParam {Date} [birthday] день рождения
+     * @apiParam {String} [workplace] место работы
+     * @apiParam {String} [image] имя картинки, должно быть предварительно сохранена
+     * @apiParam {Integer} [points] количество балов
+     *
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     *
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 422
+     *
+     * @param Request $request
+     * @param VolunteerRepository $volunteerRepository
+     * @return \App\Models\Volunteer|\Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function update(Request $request, VolunteerRepository $volunteerRepository)
     {
         $volunteer = $this->user->volunteer;
