@@ -10,6 +10,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Event;
 use App\Models\Repositories\EventRepository;
+use App\Models\Volunteer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -118,6 +119,53 @@ class EventsController extends BaseController
     {
         $date = Carbon::createFromTimestamp($timestamp);
         return $eventRepository->getEventDate($date);
+    }
+
+    /**
+     * @api {get} /events/my-events получить все события пользователя на которые он подписан
+     * @apiName getMyEvents
+     * @apiGroup Events
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+
+     *
+     */
+    public function getMyEvents()
+    {
+        return $this->getVolunteer()->events;
+    }
+
+    /**
+     * @api {get} /events/dates/{timestamp} получить все даты по $timestamp дате в текущем месяце
+     * @apiName getDateInMonth
+     * @apiGroup Events
+     *
+     * @apiParam {Int} timestamp таймстэмп даты, по месяцу которой, вы хотите получить даты
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     * @param Request $request
+     * @param Event $event
+     * @return array
+     */
+    public function acceptEvent(Request $request, Event $event)
+    {
+        $volunteer = $this->getVolunteer();
+        if ($volunteer->events->contains($event)) {
+            return ['error' => 'already accepted'];
+        }
+
+        $volunteer->events()->attach($event);
+        return [];
+    }
+
+    /**
+     * @return Volunteer
+     */
+    private function getVolunteer()
+    {
+        return auth()->user()->volunteer;
     }
 
 
