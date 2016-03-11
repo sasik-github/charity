@@ -83,7 +83,12 @@ class VolunteerRepository
     {
 
         $volunteer->update($attributes);
-        $volunteer->image = $this->filesystem->getFilenameFromPost($attributes);
+        if (array_key_exists('image', $attributes) && !empty($attributes['image'])) {
+            $volunteer->image = $attributes['image'];
+        } else {
+            $volunteer->image = $this->filesystem->getFilenameFromPost($attributes);
+        }
+
         $volunteer->save();
 
         if (array_key_exists('password', $attributes)) {
