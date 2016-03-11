@@ -13,7 +13,7 @@ class FileSystem
 
     const PATH_TO_FILES = 'files/';
 
-    const NO_IMAGE = 'images/no-image.jpg';
+    const NO_IMAGE = 'images/no_image.png';
 
     public function getFilename(UploadedFile $file)
     {
@@ -33,5 +33,14 @@ class FileSystem
         }
 
         return $attributes['filename'][0];
+    }
+
+    public function path($imageName)
+    {
+        if (empty($imageName)) {
+            return '/' . self::NO_IMAGE;
+        }
+
+        return '/' . self::PATH_TO_FILES . $imageName;
     }
 }

@@ -1,5 +1,6 @@
 @inject('organizersRepos', 'App\Models\Repositories\OrganizerRepository')
 @inject('volunteersRepos', 'App\Models\Repositories\VolunteerRepository')
+@inject('fileSystem', 'App\Files\FileSystem')
 
 @extends('layouts.app')
 
@@ -35,7 +36,7 @@
                     <th>{{ $event->id }}</th>
                     <td>{{ $event->name }}</td>
                     <td>{{ $event->description }}</td>
-                    <td>{{ $event->image }}</td>
+                    <td><img src="{{ $fileSystem->path($event->image) }}" alt="{{ $event->image }}" class="img-responsive"></td>
                     <td>{{ $event->place }}</td>
                     <td>{{ $event->points }}</td>
                     <td>{{ $event->date }}</td>
