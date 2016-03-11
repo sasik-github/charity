@@ -130,4 +130,17 @@ class VolunteersController extends BaseController
         return $volunteer;
     }
 
+    public function update(Request $request, VolunteerRepository $volunteerRepository)
+    {
+        $volunteer = $this->user->volunteer;
+        $validator = Validator::make($request->all(), $volunteerRepository->getValidationRules($volunteer->user_id));
+
+        if ($validator->fails()) {
+            return response(['errors' => $validator->messages()], 422);
+        }
+
+        $volunteer = $volunteerRepository->update($volunteer, $request->all());
+        return $volunteer;
+    }
+
 }
