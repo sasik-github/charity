@@ -102,11 +102,6 @@ class VolunteerRepository
         return $volunteer;
     }
 
-    private function getImageName($attributes)
-    {
-
-    }
-
     public function getVolunteersForSelectbox()
     {
         return Volunteer::all()->pluck('name', 'id');
