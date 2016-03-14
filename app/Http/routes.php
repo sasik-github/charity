@@ -65,5 +65,7 @@ Route::group(['prefix' => 'api/'], function() {
         Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
 
         Route::post('user/update', 'API\VolunteersController@update');
+
+        Route::post('token', 'API\TokensController@store');
     });
 });

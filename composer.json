@@ -4,12 +4,19 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "url": "https://github.com/sasik-github/gcm.git",
+            "type": "git"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "sasik-github/gcm": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

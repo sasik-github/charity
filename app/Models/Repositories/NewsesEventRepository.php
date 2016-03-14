@@ -14,6 +14,7 @@ use App\Models\News;
 class NewsesEventRepository
 {
 
+
     public function getNewsesEvents()
     {
         $newses = News::all();
