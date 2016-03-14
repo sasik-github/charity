@@ -8,6 +8,8 @@
 namespace App\Models;
 
 
+use App\Models\Modifications\WithOrganizationEvent;
+
 class Volunteer extends BaseModel
 {
 
@@ -55,5 +57,10 @@ class Volunteer extends BaseModel
     public function events()
     {
         return $this->belongsToMany(Event::class, 'rel_volunteer_event', 'volunteer_id', 'event_id');
+    }
+
+    public function WithOrganizerEvents()
+    {
+        return $this->belongsToMany(WithOrganizationEvent::class, 'rel_volunteer_event', 'volunteer_id', 'event_id');
     }
 }

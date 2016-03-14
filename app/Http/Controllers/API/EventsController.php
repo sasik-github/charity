@@ -133,7 +133,7 @@ class EventsController extends BaseController
      */
     public function getMyEvents()
     {
-        return $this->getVolunteer()->events;
+        return $this->getVolunteer()->WithOrganizerEvents;
     }
 
     /**
