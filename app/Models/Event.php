@@ -56,6 +56,13 @@ class Event extends BaseModel
         return $this->belongsTo(Organizer::class);
     }
 
+    public function toArray()
+    {
+        $res = parent::toArray();
+        $res['type'] = 'event';
+        return $res;
+    }
+
 //    protected $dateFormat = 'd.m.Y H:m';
 //    dd(Carbon::createFromFormat('d.m.Y H:m', $request->get('date')));
 }

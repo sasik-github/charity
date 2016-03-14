@@ -46,6 +46,7 @@ Route::group(['middleware' => 'web'], function () {
 Route::group(['prefix' => 'api/'], function() {
 
     Route::get('newses', 'API\NewsesController@getNewses');
+    Route::get('newsesevents', 'API\NewsEventController@getNewsEvents');
 
     Route::post('user/register', 'API\VolunteersController@register');
 

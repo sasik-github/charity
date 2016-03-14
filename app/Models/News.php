@@ -27,4 +27,11 @@ class News extends BaseModel
         'image',
     ];
 
+    public function toArray()
+    {
+        $res = parent::toArray();
+        $res['type'] = 'news';
+        return $res;
+    }
+
 }
