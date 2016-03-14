@@ -8,7 +8,7 @@
 namespace App\Models\Repositories;
 
 
-use App\Models\Event;
+use App\Models\Modifications\WithOrganizationEvent;
 use App\Models\News;
 
 class NewsesEventRepository
@@ -19,7 +19,7 @@ class NewsesEventRepository
     {
         $newses = News::all();
 
-        $events = Event::all();
+        $events = WithOrganizationEvent::all();
 
         $collection = collect([$newses, $events/*->sort($this->sortByDateOrUpdatedAtCallback())*/]);
         $collection = $collection->collapse();
