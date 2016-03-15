@@ -42,10 +42,13 @@ class EventsController extends BaseController
      *          ...
      *
      *       ]
+     * @param EventRepository $eventRepository
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function getAllEvents()
+    public function getAllEvents(EventRepository $eventRepository)
     {
-        return Event::all();
+        return $eventRepository->getAll($this->getVolunteer());
+
     }
 
 
@@ -200,6 +203,32 @@ class EventsController extends BaseController
     {
         $volunteer = $this->getVolunteer();
         return $eventRepository->getAdministratedEventByVolunteerId($volunteer->id);
+    }
+
+    /**
+     * @api {get} /events/accepted-volunteers/{event} Получить список волонтеров подписанных на событие {event}
+     * @apiName getAcceptedVolunteers
+     * @apiGroup Events
+     *
+     * @apiParam {Int} event id события
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * @param Event $event
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAcceptedVolunteers(Event $event)
+    {
+        $adminVolunteer = $event->volunteer;
+        if ($adminVolunteer != $this->getVolunteer()) {
+            return ['error' => 'You must be an admin of event'];
+        }
+
+        return $event
+            ->volunteers()
+            ->with('user')
+            ->get();
     }
 
     /**

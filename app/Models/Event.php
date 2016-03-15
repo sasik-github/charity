@@ -51,6 +51,11 @@ class Event extends BaseModel
         return $this->belongsToMany(Volunteer::class, 'rel_volunteer_event', 'event_id', 'volunteer_id');
     }
 
+    public function volunteer()
+    {
+        return $this->belongsTo(Volunteer::class);
+    }
+
     public function organizer()
     {
         return $this->belongsTo(Organizer::class);

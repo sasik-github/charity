@@ -10,6 +10,7 @@ namespace App\Models\Repositories;
 
 use App\Models\Event;
 use App\Models\Modifications\WithOrganizationEvent;
+use App\Models\Volunteer;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
@@ -102,5 +103,29 @@ class EventRepository
     public function getAdministratedEventByVolunteerId($volunteerId)
     {
         return WithOrganizationEvent::where('volunteer_id', $volunteerId)->get();
+    }
+
+    /**
+     * получить все события, привязкой к пользовтелю
+     * @param Volunteer $volunteer
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getAll(Volunteer $volunteer)
+    {
+        $acceptedEvents = $volunteer->events->pluck('id')->toArray();
+        $events = Event::all();
+        foreach ($events as $event) {
+            /**
+             * @var $event Event
+             */
+            if (in_array($event->id, $acceptedEvents)) {
+                $event->accepted = true;
+            } else {
+                $event->accepted = false;
+            }
+        }
+
+
+        return $events;
     }
 }
