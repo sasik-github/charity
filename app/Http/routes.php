@@ -60,7 +60,9 @@ Route::group(['prefix' => 'api/'], function() {
         Route::get('events/by-date/{date}', 'API\EventsController@getEventsByDate');
         Route::get('events/dates/{date}', 'API\EventsController@getDateInMonth');
         Route::get('events/my-events/', 'API\EventsController@getMyEvents');
+
         Route::post('events/accept/{event}', 'API\EventsController@acceptEvent');
+        Route::post('events/reject/{event}', 'API\EventsController@rejectEvent');
 
         Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
 

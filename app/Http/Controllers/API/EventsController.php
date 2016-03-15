@@ -160,6 +160,31 @@ class EventsController extends BaseController
     }
 
     /**
+     * @api {post} /events/reject/{event} текущий пользователь отказывается принимать участие в {event}
+     * @apiName rejectEvent
+     * @apiGroup Events
+     *
+     * @apiParam {Int} event id события
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     * @param Event $event
+     * @return array
+     */
+    public function rejectEvent(Event $event)
+    {
+        $volunteer = $this->getVolunteer();
+
+        if (!$volunteer->events->contains($event)) {
+            return ['error' => 'already rejected'];
+        }
+
+        $volunteer->events()->detach($event);
+
+        return [];
+    }
+
+    /**
      * @return Volunteer
      */
     private function getVolunteer()
