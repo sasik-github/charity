@@ -2,6 +2,7 @@
 namespace App\Models\Repositories;
 
 use App\Files\FileSystem;
+use App\Models\Event;
 use App\Models\User;
 use App\Models\Volunteer;
 
@@ -103,5 +104,23 @@ class VolunteerRepository
     public function getVolunteersForSelectbox()
     {
         return Volunteer::all()->pluck('name', 'id');
+    }
+
+    /**
+     * @param $volunteerIDs array массив Id
+     * @param Event $event
+     */
+    public function grantPointsToVolunteers($volunteerIDs, Event $event)
+    {
+        $volunteers = $event->volunteers()->find($volunteerIDs);
+
+        foreach ($volunteers as $volunteer) {
+            /**
+             * @var $volunteer Volunteer
+             */
+            $volunteer->visitEvent($event);
+            $volunteer->save();
+        }
+
     }
 }

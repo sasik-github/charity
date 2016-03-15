@@ -68,6 +68,8 @@ Route::group(['prefix' => 'api/'], function() {
         Route::post('events/accept/{event}', 'API\EventsController@acceptEvent');
         Route::post('events/reject/{event}', 'API\EventsController@rejectEvent');
 
+        Route::post('events/grant/{event}', 'API\EventsController@grantPointsToVolunteers');
+
         Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
 
         Route::post('user/update', 'API\VolunteersController@update');

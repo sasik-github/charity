@@ -10,6 +10,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Event;
 use App\Models\Repositories\EventRepository;
+use App\Models\Repositories\VolunteerRepository;
 use App\Models\Volunteer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -220,15 +221,54 @@ class EventsController extends BaseController
      */
     public function getAcceptedVolunteers(Event $event)
     {
-        $adminVolunteer = $event->volunteer;
-        if ($adminVolunteer != $this->getVolunteer()) {
+
+        if (!$this->isAdminOfEvent($event)) {
             return ['error' => 'You must be an admin of event'];
         }
 
         return $event
             ->volunteers()
+            ->wherePivot('is_visited', false)
             ->with('user')
             ->get();
+    }
+
+
+    /**
+     * @api {post} /events/grant/{event} наградить волонтеров за участие в событие {event}
+     * @apiName grantPointsToVolunteers
+     * @apiGroup Events
+     *
+     * @apiParam {Int} event id события
+     * @apiParam {array} ids массив ID волонтеров, которых следует наградить
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *  []
+     *
+     * @param Event $event
+     * @param Request $request
+     * @param VolunteerRepository $volunteerRepository
+     * @return array
+     */
+    public function grantPointsToVolunteers(Event $event, Request $request, VolunteerRepository $volunteerRepository)
+    {
+        $volunteerIDs = $request->get('ids', []);
+        $volunteerRepository->grantPointsToVolunteers($volunteerIDs, $event);
+
+        return [];
+    }
+
+    /**
+     * является ли текущий волнтер куратором события?
+     * @param $event Event
+     * @return bool
+     */
+    private function isAdminOfEvent(Event $event)
+    {
+        $adminVolunteer = $event->volunteer;
+
+        return $adminVolunteer == $this->getVolunteer();
     }
 
     /**

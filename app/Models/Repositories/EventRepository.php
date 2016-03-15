@@ -105,6 +105,8 @@ class EventRepository
         return WithOrganizationEvent::where('volunteer_id', $volunteerId)->get();
     }
 
+
+
     /**
      * получить все события, привязкой к пользовтелю
      * @param Volunteer $volunteer

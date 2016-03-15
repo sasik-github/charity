@@ -68,6 +68,21 @@ class Event extends BaseModel
         return $res;
     }
 
-//    protected $dateFormat = 'd.m.Y H:m';
-//    dd(Carbon::createFromFormat('d.m.Y H:m', $request->get('date')));
+    /**
+     * @param Volunteer $volunteer
+     * @return bool
+     */
+    public function isVisited(Volunteer $volunteer)
+    {
+        $volunteer = $this->volunteers()->withPivot('is_visited')->find($volunteer->id);
+        return (bool) $volunteer->pivot->is_visited;
+    }
+
+    public function visit(Volunteer $volunteer)
+    {
+        $volunteer = $this->volunteers()->withPivot('is_visited')->find($volunteer->id);
+        $this->volunteers()->updateExistingPivot($volunteer->id, ['is_visited' => true]);
+        return $this;
+    }
+
 }

@@ -64,4 +64,18 @@ class Volunteer extends BaseModel
         return $this->belongsToMany(WithOrganizationEvent::class, 'rel_volunteer_event', 'volunteer_id', 'event_id');
     }
 
+    public function increasePoints($value)
+    {
+        $this->points = $this->points + (int) $value;
+        return $this;
+    }
+
+    public function visitEvent(Event $event)
+    {
+        if (!$event->isVisited($this)) {
+            $this->increasePoints($event->points);
+            $event->visit($this);
+        }
+    }
+
 }
