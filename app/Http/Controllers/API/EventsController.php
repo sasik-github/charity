@@ -184,6 +184,24 @@ class EventsController extends BaseController
         return [];
     }
 
+
+    /**
+     * @api {get} /events/my-administrated-events Получить список курируемых событий
+     * @apiName getMyAdministratedEvents
+     * @apiGroup Events
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *
+     * @param EventRepository $eventRepository
+     * @return \Illuminate\Support\Collection
+     */
+    public function getMyAdministratedEvents(EventRepository $eventRepository)
+    {
+        $volunteer = $this->getVolunteer();
+        return $eventRepository->getAdministratedEventByVolunteerId($volunteer->id);
+    }
+
     /**
      * @return Volunteer
      */

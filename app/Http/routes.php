@@ -59,7 +59,9 @@ Route::group(['prefix' => 'api/'], function() {
         Route::get('events', 'API\EventsController@getAllEvents');
         Route::get('events/by-date/{date}', 'API\EventsController@getEventsByDate');
         Route::get('events/dates/{date}', 'API\EventsController@getDateInMonth');
+
         Route::get('events/my-events/', 'API\EventsController@getMyEvents');
+        Route::get('events/my-administrated-events/', 'API\EventsController@getMyAdministratedEvents');
 
         Route::post('events/accept/{event}', 'API\EventsController@acceptEvent');
         Route::post('events/reject/{event}', 'API\EventsController@rejectEvent');

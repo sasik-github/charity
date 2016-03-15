@@ -11,6 +11,7 @@ namespace App\Models\Repositories;
 use App\Models\Event;
 use App\Models\Modifications\WithOrganizationEvent;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class EventRepository
 {
@@ -91,5 +92,15 @@ class EventRepository
                 ->groupBy(function($item) {
                     return $item->date->format('d.m.Y');
             })->toArray());
+    }
+
+    /**
+     * Получить список курируемых событий
+     * @param $volunteerId
+     * @return Collection
+     */
+    public function getAdministratedEventByVolunteerId($volunteerId)
+    {
+        return WithOrganizationEvent::where('volunteer_id', $volunteerId)->get();
     }
 }
