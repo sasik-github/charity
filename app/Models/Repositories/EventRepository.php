@@ -120,7 +120,7 @@ class EventRepository
             /**
              * @var $event Event
              */
-            if (in_array($event->id, $acceptedEvents)) {
+            if (in_array($event->id, $acceptedEvents, true)) {
                 $event->accepted = true;
             } else {
                 $event->accepted = false;

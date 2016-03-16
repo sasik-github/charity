@@ -49,7 +49,6 @@ class EventsController extends BaseController
     public function getAllEvents(EventRepository $eventRepository)
     {
         return $eventRepository->getAll($this->getVolunteer());
-
     }
 
 
@@ -300,7 +299,13 @@ class EventsController extends BaseController
      */
     private function getVolunteer()
     {
-        return auth()->user()->volunteer;
+        $volunteer = auth()->user()->volunteer;
+
+        if (!$volunteer) {
+            abort(404, 'Volunteer not found');
+        }
+
+        return $volunteer;
     }
 
 
