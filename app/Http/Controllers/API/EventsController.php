@@ -155,7 +155,7 @@ class EventsController extends BaseController
     public function acceptEvent(Event $event)
     {
         $volunteer = $this->getVolunteer();
-        if ($volunteer->events->contains($event)) {
+        if ($volunteer->isAccepted($event)) {
             return ['error' => 'already accepted'];
         }
 
@@ -179,7 +179,7 @@ class EventsController extends BaseController
     {
         $volunteer = $this->getVolunteer();
 
-        if (!$volunteer->events->contains($event)) {
+        if (!$volunteer->isAccepted($event)) {
             return ['error' => 'already rejected'];
         }
 
@@ -257,6 +257,30 @@ class EventsController extends BaseController
         $volunteerRepository->grantPointsToVolunteers($volunteerIDs, $event);
 
         return [];
+    }
+
+    /**
+     * @api {get} /events/is-accepted/{event} Получить статус пользовател, принял не принял событие {event}
+     * @apiName isAcceptedEvent
+     * @apiGroup Events
+     *
+     * @apiParam {Int} event id события
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+    {
+        "is_accept": false
+    }
+     *
+     * @param Event $event
+     * @return \Illuminate\Support\Collection
+     */
+    public function isAcceptedEvent(Event $event)
+    {
+        $volunteer = $this->getVolunteer();
+
+        return ['is_accept' => $volunteer->isAccepted($event)];
+
     }
 
     /**

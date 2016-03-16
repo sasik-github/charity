@@ -64,6 +64,7 @@ Route::group(['prefix' => 'api/'], function() {
         Route::get('events/my-administrated-events/', 'API\EventsController@getMyAdministratedEvents');
 
         Route::get('events/accepted-volunteers/{event}', 'API\EventsController@getAcceptedVolunteers');
+        Route::get('events/is-accepted/{event}', 'API\EventsController@isAcceptedEvent');
 
         Route::post('events/accept/{event}', 'API\EventsController@acceptEvent');
         Route::post('events/reject/{event}', 'API\EventsController@rejectEvent');

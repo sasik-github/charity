@@ -78,4 +78,14 @@ class Volunteer extends BaseModel
         }
     }
 
+    /**
+     * принимает ли волонтер участие в событие
+     * @param Event $event
+     * @return bool
+     */
+    public function isAccepted(Event $event)
+    {
+        return $this->events->contains($event);
+    }
+
 }
