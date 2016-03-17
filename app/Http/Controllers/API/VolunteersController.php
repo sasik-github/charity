@@ -9,6 +9,7 @@ namespace App\Http\Controllers\API;
 
 
 
+use App\Models\Repositories\EventRepository;
 use App\Models\Repositories\VolunteerRepository;
 use Illuminate\Http\Request;
 use Validator;
@@ -37,33 +38,35 @@ class VolunteersController extends BaseController
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
-        {
-            "id": 1,
-            "firstname": "Alexandr",
-            "lastname": "Spesivtsev",
-            "middlename": "Sergeevich",
-            "email": null,
-            "telephone": "89516021698",
-            "is_admin": 0,
-            "created_at": "2016-03-06 12:16:30",
-            "updated_at": "2016-03-07 14:49:38",
-            "volunteer": {
-                "id": 1,
-                "user_id": 1,
-                "birthday": "1991-02-11",
-                "workplace": "sdfaASDF",
-                "image": "",
-                "points": 123,
-                "created_at": "2016-03-06 12:16:30",
-                "updated_at": "2016-03-06 12:16:30"
-            }
-        }
+     * {
+     * "id": 1,
+     * "firstname": "Alexandr",
+     * "lastname": "Spesivtsev",
+     * "middlename": "Sergeevich",
+     * "email": null,
+     * "telephone": "89516021698",
+     * "is_admin": 0,
+     * "created_at": "2016-03-06 12:16:30",
+     * "updated_at": "2016-03-07 14:49:38",
+     * "volunteer": {
+     * "id": 1,
+     * "user_id": 1,
+     * "birthday": "1991-02-11",
+     * "workplace": "sdfaASDF",
+     * "image": "",
+     * "points": 123,
+     * "created_at": "2016-03-06 12:16:30",
+     * "updated_at": "2016-03-06 12:16:30"
+     * }
+     * }
+     * @param EventRepository $eventRepository
+     * @return User
      */
-    public function auth()
+    public function auth(EventRepository $eventRepository)
     {
 
         $volunteer = $this->user->volunteer;
-
+        $this->user->has_events = $eventRepository->getAdministratedEventByVolunteerId($volunteer->id)->count() > 0;
         return $this->user;
     }
 
