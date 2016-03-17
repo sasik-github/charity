@@ -19,6 +19,6 @@ class TokenRepository
      */
     public function getByToken($token)
     {
-        return Token::where('token', $token)->firts();
+        return Token::where('token', $token)->first();
     }
 }
