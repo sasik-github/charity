@@ -8,6 +8,7 @@
 namespace App\Models\Helpers;
 
 
+use App\Events\LevelUpEvent;
 use App\Models\Volunteer;
 
 class LevelUpChecker
@@ -18,8 +19,8 @@ class LevelUpChecker
      * @var Volunteer
      */
     private $volunteer;
-    private $endLevel;
-    private $startLevel;
+    private $endLevel = null;
+    private $startLevel = null;
 
     public function __construct(Volunteer $volunteer)
     {
@@ -47,6 +48,11 @@ class LevelUpChecker
         if ($this->endLevel == null)
             $this->end();
 
-        return $this->startLevel == $this->endLevel;
+        return $this->startLevel != $this->endLevel;
+    }
+
+    public function sendPushAboutNewLevel($volunteer)
+    {
+        \Event::fire(new LevelUpEvent($volunteer));
     }
 }

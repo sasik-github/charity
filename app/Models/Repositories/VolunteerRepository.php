@@ -127,7 +127,7 @@ class VolunteerRepository
             \Event::fire(new GrantPointsEvent($volunteer, $event));
 
             if ($levelUpChecker->isLevelUped()) {
-                \Event::fire(new LevelUpEvent($volunteer));
+                $levelUpChecker->sendPushAboutNewLevel($volunteer);
             }
         }
 
