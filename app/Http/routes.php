@@ -52,13 +52,14 @@ Route::group(['prefix' => 'api/'], function() {
 
     Route::post('files/upload', 'API\FileController@upload');
 
+    Route::get('events/dates/{date}', 'API\EventsController@getDateInMonth');
 
     Route::group(['middleware' => ['api']], function() {
         Route::get('authorize', 'API\VolunteersController@auth');
 
         Route::get('events', 'API\EventsController@getAllEvents');
         Route::get('events/by-date/{date}', 'API\EventsController@getEventsByDate');
-        Route::get('events/dates/{date}', 'API\EventsController@getDateInMonth');
+
 
         Route::get('events/my-events/', 'API\EventsController@getMyEvents');
         Route::get('events/my-administrated-events/', 'API\EventsController@getMyAdministratedEvents');
