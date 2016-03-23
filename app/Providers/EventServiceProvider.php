@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\GrantPointsEvent;
+use App\Events\LevelUpEvent;
 use App\Listeners\GrantPointsListener;
+use App\Listeners\LevelUpListener;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -15,13 +17,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        
+        GrantPointsEvent::class => [
+            GrantPointsListener::class,
         ],
 
-        GrantPointsEvent::class => [
-            GrantPointsListener::class
-        ]
+        LevelUpEvent::class => [
+            LevelUpListener::class,
+        ],
+
     ];
 
     /**

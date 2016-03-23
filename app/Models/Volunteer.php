@@ -102,8 +102,8 @@ class Volunteer extends BaseModel
     {
         $res = parent::toArray();
         $level = new Level($this);
-        $res['level'] = (int)(string)$level;
-        $res['next_level_exp'] = $level->getExperienceForLevel((int)(string)$level + 1);
+        $res['level'] = $level->toInt();
+        $res['next_level_exp'] = $level->getExperienceForLevel($level->toInt() + 1);
         return $res;
     }
 

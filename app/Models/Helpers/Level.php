@@ -12,6 +12,7 @@ use App\Models\Volunteer;
 
 class Level
 {
+    
     CONST INITIAL_VALUE = 5;
     /**
      * @var Volunteer
@@ -27,6 +28,11 @@ class Level
     function __toString()
     {
         return (string) $this->calculateLevelByExperience($this->volunteer);
+    }
+
+    public function toInt()
+    {
+        return (int) $this->calculateLevelByExperience($this->volunteer);
     }
 
 
@@ -47,7 +53,7 @@ class Level
         if ($level < 2) {
             return self::INITIAL_VALUE;
         }
-        
+
         $exp = self::INITIAL_VALUE * pow(2, $level - 1);
         return $exp;
     }
