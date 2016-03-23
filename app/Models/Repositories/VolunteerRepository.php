@@ -1,6 +1,7 @@
 <?php
 namespace App\Models\Repositories;
 
+use App\Events\GrantPointsEvent;
 use App\Files\FileSystem;
 use App\Models\Event;
 use App\Models\User;
@@ -120,6 +121,8 @@ class VolunteerRepository
              */
             $volunteer->visitEvent($event);
             $volunteer->save();
+
+            \Event::fire(new GrantPointsEvent($volunteer, $event));
         }
 
     }

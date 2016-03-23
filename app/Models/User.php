@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Volunteer::class);
     }
+
+    public function tokens()
+    {
+        return $this->hasMany(Token::class);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\GrantPointsEvent;
+use App\Listeners\GrantPointsListener;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -16,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+
+        GrantPointsEvent::class => [
+            GrantPointsListener::class
+        ]
     ];
 
     /**
