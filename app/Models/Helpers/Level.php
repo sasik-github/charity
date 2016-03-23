@@ -41,4 +41,14 @@ class Level
         $level = floor(log(($exp / self::INITIAL_VALUE), 2) + 1);
         return $level;
     }
+
+    public function getExperienceForLevel($level)
+    {
+        if ($level < 2) {
+            return self::INITIAL_VALUE;
+        }
+        
+        $exp = self::INITIAL_VALUE * pow(2, $level - 1);
+        return $exp;
+    }
 }

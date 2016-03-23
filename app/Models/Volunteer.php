@@ -101,8 +101,9 @@ class Volunteer extends BaseModel
     public function toArray()
     {
         $res = parent::toArray();
-
-        $res['level'] = (int)(string) (new Level($this));
+        $level = new Level($this);
+        $res['level'] = (int)(string)$level;
+        $res['next_level_exp'] = $level->getExperienceForLevel((int)(string)$level + 1);
         return $res;
     }
 
