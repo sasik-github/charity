@@ -3,6 +3,7 @@
 namespace App\Push;
 
 use App\Models\Event;
+use App\Models\Helpers\PluralForm;
 use App\Models\Token;
 use App\Models\Volunteer;
 use Sasik\GCM\CloudMessaging;
@@ -15,6 +16,7 @@ use Sasik\GCM\ResponseCode;
  */
 class PushHandler
 {
+    
 
     public function push()
     {
@@ -50,7 +52,7 @@ class PushHandler
     private function generateGrantPointsData(Event $event)
     {
         return [
-            'message' => 'Вы полчулили ' . $event->points . ' баллы',
+            'message' => 'Вы получили ' . $event->points . ' ' . (new PluralForm($event->points, Event::$forms)) . ' за участие в "' . $event->name . '"',
         ];
     }
 

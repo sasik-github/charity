@@ -13,6 +13,12 @@ use Carbon\Carbon;
 class Event extends BaseModel
 {
 
+    /**
+     * формы склонений
+     * @var array
+     */
+    public static $forms = ['балл', 'балла', 'баллов'];
+
     protected $table = 'events';
 
     protected $fillable = [
