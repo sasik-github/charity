@@ -13,7 +13,7 @@ class AddLevelToVolunteers extends Migration
     public function up()
     {
         Schema::table('volunteers', function (Blueprint $table) {
-            $table->unsignedInteger('level');
+//            $table->unsignedInteger('level');
             $table->unsignedInteger('experience');
         });
     }
@@ -26,7 +26,7 @@ class AddLevelToVolunteers extends Migration
     public function down()
     {
         Schema::table('volunteers', function (Blueprint $table) {
-            $table->dropColumn('level');
+//            $table->dropColumn('level');
             $table->dropColumn('experience');
         });
     }
