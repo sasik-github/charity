@@ -20,6 +20,7 @@
                     <th>Имя</th>
                     <th>Телефон</th>
                     <th>Балы</th>
+                    <th>Уровень</th>
                     <th>День рождения</th>
                     <th></th>
                 </tr>
@@ -31,6 +32,7 @@
                     <td><a href="{{route('volunteers.show', [$volunteer->id])}}">{{ $volunteer->name }}</a></td>
                     <td>{{ $volunteer->telephone}}</td>
                     <td>{{ $volunteer->points }}</td>
+                    <td>{{ new \App\Models\Helpers\Level($volunteer) }}</td>
                     <td>{{ $volunteer->birthday }}</td>
                     <td>
                         @include('common.objectActions', ['objectType' => 'volunteers', 'objectId' => $volunteer->id, ])

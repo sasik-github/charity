@@ -8,6 +8,7 @@
 namespace App\Models;
 
 
+use App\Models\Helpers\Level;
 use App\Models\Modifications\WithOrganizationEvent;
 
 class Volunteer extends BaseModel
@@ -73,7 +74,9 @@ class Volunteer extends BaseModel
     public function visitEvent(Event $event)
     {
         if (!$event->isVisited($this)) {
-            $this->increasePoints($event->points);
+            $this->increasePoints($event->points)
+                ->increaseExperience($event->points);
+            
             $event->visit($this);
         }
     }
@@ -86,6 +89,21 @@ class Volunteer extends BaseModel
     public function isAccepted(Event $event)
     {
         return $this->events->contains($event);
+    }
+
+    private function increaseExperience($value)
+    {
+        $this->experience = $this->experience + $value;
+
+        return $this;
+    }
+
+    public function toArray()
+    {
+        $res = parent::toArray();
+
+        $res['level'] = (int)(string) (new Level($this));
+        return $res;
     }
 
 }
