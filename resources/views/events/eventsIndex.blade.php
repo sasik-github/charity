@@ -17,6 +17,17 @@
     </div>
 
     <div class="row">
+        <div class="col-sm-12">
+            <select onChange="window.location.href=this.value">
+                <option value="{{ url('/events') }}">Группировать по...</option>
+                @foreach($organizersRepos->getOrganizersForSelectbox() as $id => $organizer)
+                    <option {{ $id == $organizerId ? 'selected' : '' }} value="?organizer={{ $id }}">{{ $organizer }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
         <table class="table table-stripped">
             <thead>
             <tr>

@@ -8,6 +8,7 @@ use App\Models\Repositories\EventRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 
 class EventsController extends BaseController
 {
@@ -17,15 +18,23 @@ class EventsController extends BaseController
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::paginate($this->pagination);
+        $organizerId = $request->get('organizer');
 
-        return $this->view('Index',
-            compact('events')
-            );
+        if ($organizerId) {
+            $events = Event::where('organizer_id', $organizerId)->paginate($this->pagination);
+        } else {
+            $events = Event::paginate($this->pagination);
+        }
+
+        return $this->view('Index', [
+                'events' => $events->appends(Input::except('page')),
+                'organizerId' => $organizerId,
+            ]);
     }
 
     /**

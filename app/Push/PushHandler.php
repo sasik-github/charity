@@ -19,7 +19,7 @@ class PushHandler
 
     public function makePush(Token $token, $data)
     {
-        $response = CloudMessaging::send($token->token, $data);
+        $response = CloudMessaging::sendToAndroid($token->token, $data);
         $code = ResponseCode::fromResponse($response);
 
         if (ResponseCode::NOT_REGISTERED === $code || ResponseCode::UNKNOWN_ERROR === $code) {
