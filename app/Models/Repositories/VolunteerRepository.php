@@ -2,7 +2,6 @@
 namespace App\Models\Repositories;
 
 use App\Events\GrantPointsEvent;
-use App\Events\LevelUpEvent;
 use App\Files\FileSystem;
 use App\Models\Event;
 use App\Models\Helpers\LevelUpChecker;
@@ -124,7 +123,7 @@ class VolunteerRepository
             $levelUpChecker = new LevelUpChecker($volunteer);
             $volunteer->visitEvent($event);
             $volunteer->save();
-            \Event::fire(new GrantPointsEvent($volunteer, $event));
+            \Event::fire(new App\Models\Event\GrantPointsEvent($volunteer, $event));
 
             if ($levelUpChecker->isLevelUped()) {
                 $levelUpChecker->sendPushAboutNewLevel($volunteer);
