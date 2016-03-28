@@ -13,12 +13,14 @@
     <h1>Список событий</h1>
 
     <div class="row">
-        <a href="{{ route('events.create') }}" class="btn btn-primary">Создать</a>
+        <div class="col-sm-12">
+            <a href="{{ route('events.create') }}" class="btn btn-primary">Создать</a>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12">
-            <select onChange="window.location.href=this.value">
+            <select onChange="window.location.href=this.value" class="form-control">
                 <option value="{{ url('/events') }}">Группировать по...</option>
                 @foreach($organizersRepos->getOrganizersForSelectbox() as $id => $organizer)
                     <option {{ $id == $organizerId ? 'selected' : '' }} value="?organizer={{ $id }}">{{ $organizer }}</option>
