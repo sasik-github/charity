@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Helpers\LevelUpChecker;
 use App\Models\User;
 use App\Models\Volunteer;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * User: sasik
@@ -130,5 +131,26 @@ class VolunteerRepository
             }
         }
 
+    }
+
+    /**
+     * @param $query Builder
+     * @param $searchWord string
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function searchByFIO(Builder $query, $searchWord)
+    {
+        $searchWord = '%' . $searchWord . '%';
+        $query->whereHas('user', function(Builder $subQuery) use ($searchWord) {
+            $subQuery->where(function($groupQuery) use ($searchWord) {
+                $groupQuery
+                    ->orWhere('firstname', 'like', $searchWord)
+                    ->orWhere('middlename', 'like', $searchWord)
+                    ->orWhere('lastname', 'like', $searchWord);
+            })
+            ;
+        });
+
+        return $query;
     }
 }

@@ -16,11 +16,20 @@ class VolunteersController extends BaseController
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     * @param VolunteerRepository $volunteerRepository
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, VolunteerRepository $volunteerRepository)
     {
-        $volunteers = Volunteer::paginate($this->pagination);
+        $query = Volunteer::query();
+
+        $searchWord = $request->get('search');
+        if ($searchWord) {
+            $query = $volunteerRepository->searchByFIO($query, $searchWord);
+        }
+
+        $volunteers = $query->paginate($this->pagination);
 
         return $this->view('Index',
             compact('volunteers')
@@ -56,7 +65,7 @@ class VolunteersController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param Volunteer $volunteer
+     * @param $id int
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,7 +86,7 @@ class VolunteersController extends BaseController
      * Show the form for editing the specified resource.
      *
      * @param VolunteerRepository $volunteerRepository
-     * @param $id
+     * @param $id int
      * @return \Illuminate\Http\Response
      * @internal param Volunteer $volunteer
      */

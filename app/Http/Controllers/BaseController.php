@@ -25,7 +25,7 @@ class BaseController extends LaravelController
      * количество элементе на странице
      * @var int
      */
-    protected $pagination = 5;
+    protected $pagination = 15;
 
     /**
      * @param null $view

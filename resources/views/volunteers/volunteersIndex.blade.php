@@ -13,6 +13,10 @@
     </div>
 
     <div class="row">
+
+    </div>
+
+    <div class="row">
         <table class="table table-stripped">
             <thead>
                 <tr>
