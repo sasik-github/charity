@@ -8,9 +8,7 @@
 
 @section('content')
 
-    {{--<div class="row">--}}
-        <h1>Новости</h1>
-    {{--</div>--}}
+    <h1>Новости</h1>
 
     <div class="row">
         @foreach($newses as $news)
@@ -27,12 +25,14 @@
                 </p>
             </div>
         @endforeach
+
+            <div class="col-sm-12 text-center">
+                <div class="">
+                    {!! $newses->links() !!}
+                </div>
+            </div>
     </div>
 
-    <div class="row text-center">
-        <div class="">
-            {!! $newses->links() !!}
-        </div>
-    </div>
+
 
 @endsection

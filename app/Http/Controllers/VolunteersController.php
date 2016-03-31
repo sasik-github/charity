@@ -32,7 +32,7 @@ class VolunteersController extends BaseController
         $volunteers = $query->paginate($this->pagination);
 
         return $this->view('Index',
-            compact('volunteers')
+            compact('volunteers', 'searchWord')
             );
     }
 

@@ -34,7 +34,9 @@ class TokensController extends BaseController
         /**
          * @var $user User
          */
-        $user = auth()->user();
+        $user = auth()
+            ->user();
+
         if (!$user) {
             return response('User doesn\'t exist', 401);
         }
