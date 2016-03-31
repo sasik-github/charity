@@ -48,7 +48,7 @@ class TokensController extends BaseController
          * если токен существует, только обновляем время
          */
         if ($token) {
-            $token->touch();
+            $token->update($attributes);
             return $token;
         }
 
