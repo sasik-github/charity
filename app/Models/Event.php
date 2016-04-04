@@ -81,6 +81,11 @@ class Event extends BaseModel
     public function isVisited(Volunteer $volunteer)
     {
         $volunteer = $this->volunteers()->withPivot('is_visited')->find($volunteer->id);
+
+        if (!$volunteer) {
+            return false;
+        }
+
         return (bool) $volunteer->pivot->is_visited;
     }
 
