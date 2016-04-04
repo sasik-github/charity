@@ -91,6 +91,15 @@ class Volunteer extends BaseModel
         return $this->events->contains($event);
     }
 
+    /**
+     * @param Event $event
+     * @return bool
+     */
+    public function isVisited(Event $event)
+    {
+        return $event->isVisited($this);
+    }
+
     private function increaseExperience($value)
     {
         $this->experience = $this->experience + $value;
