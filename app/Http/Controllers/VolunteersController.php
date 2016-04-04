@@ -125,11 +125,15 @@ class VolunteersController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param Volunteer $volunteer
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Volunteer $volunteer)
+    public function destroy($id)
     {
-        //
+        $volunteer = Volunteer::findOrFail($id);
+        $volunteer->delete();
+
+        return redirect()
+            ->action('VolunteersController@index');
     }
 }
