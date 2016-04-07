@@ -96,4 +96,14 @@ class Event extends BaseModel
         return $this;
     }
 
+    /**
+     * событие закончилось?
+     * @return bool
+     */
+    public function isOver()
+    {
+        $now = Carbon::now();
+        return $this->date->gt($now);
+    }
+
 }

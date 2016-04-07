@@ -281,6 +281,7 @@ class EventsController extends BaseController
         return [
             'is_accept' => $volunteer->isAccepted($event),
             'is_visited' => $volunteer->isVisited($event),
+            'is_over' => $event->isOver(),
         ];
 
     }
