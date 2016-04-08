@@ -8,6 +8,10 @@
         {
             "url": "https://github.com/sasik-github/gcm.git",
             "type": "git"
+        },
+        {
+            "url": "https://github.com/sasik-github/smsc-gateway.git",
+            "type": "git"
         }
     ],
     "require": {
@@ -16,7 +20,8 @@
         "laravelcollective/html": "^5.2",
         "barryvdh/laravel-ide-helper": "^2.1",
         "doctrine/dbal": "^2.5",
-        "sasik-github/gcm": "dev-master"
+        "sasik-github/gcm": "dev-master",
+        "sasik-github/smsc-gateway": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
