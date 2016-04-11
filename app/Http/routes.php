@@ -52,6 +52,11 @@ Route::group(['prefix' => 'api/'], function() {
     Route::get('events/by-date/{date}', 'API\EventsController@getEventsByDate');
 
     Route::group(['middleware' => ['api']], function() {
+
+
+        Route::get('/auth/user-is-exist/{telephone}', 'API\UserController@getUserIsExist');
+        Route::post('/auth/reset-password/{telephone}', 'API\UserController@postResetPassword');
+
         Route::get('authorize', 'API\VolunteersController@auth');
 
         Route::get('events', 'API\EventsController@getAllEvents');
