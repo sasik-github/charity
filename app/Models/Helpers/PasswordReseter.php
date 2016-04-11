@@ -35,8 +35,9 @@ class PasswordReseter
         $newPassword = $this->generatePassword();
         $user->password = $newPassword;
         $user->save();
+        $telephone = '+7' . $user->telephone;
 
-        $this->smsGateway->send($user->telephone, $this->getMessage($newPassword));
+        $this->smsGateway->send($telephone, $this->getMessage($newPassword));
 
     }
 
