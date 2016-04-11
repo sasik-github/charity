@@ -54,8 +54,8 @@ Route::group(['prefix' => 'api/'], function() {
     Route::group(['middleware' => ['api']], function() {
 
 
-        Route::get('/auth/user-is-exist/{telephone}', 'API\UserController@getUserIsExist');
-        Route::post('/auth/reset-password/{telephone}', 'API\UserController@postResetPassword');
+        Route::get('/auth/user-is-exist/{telephone}', 'API\AuthController@getUserIsExist');
+        Route::post('/auth/reset-password/{telephone}', 'API\AuthController@postResetPassword');
 
         Route::get('authorize', 'API\VolunteersController@auth');
 
