@@ -46,7 +46,7 @@ class PasswordReseter
 //        $byteSize = $length / 2 + 1;
 //        return substr(bin2hex(openssl_random_pseudo_bytes($byteSize)), 0, $length);
 
-        return rand(1000, 9999);
+        return rand(100000, 999999);
     }
 
     private function getMessage($password)
