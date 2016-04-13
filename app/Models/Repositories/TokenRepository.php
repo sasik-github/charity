@@ -21,4 +21,25 @@ class TokenRepository
     {
         return Token::where('token', $token)->first();
     }
+
+    /**
+     * @param $token
+     * @param $deviceTypeId
+     * @return Token|bool
+     */
+    public function isExist($token, $deviceTypeId)
+    {
+        $tokens = Token::where('token', $token)->get();
+
+        foreach ($tokens as $token) {
+            /**
+             * @var $token Token
+             */
+            if ($token->device_type_id == $deviceTypeId) {
+                return $token;
+            }
+        }
+
+        return false;
+    }
 }

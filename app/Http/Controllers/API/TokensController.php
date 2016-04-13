@@ -44,14 +44,21 @@ class TokensController extends BaseController
         $attributes = $request->all();
         $attributes['user_id'] = $user->id;
 
-        $token = $tokenRepository->getByToken($attributes['token']);
-
-        /**
-         * если токен существует, только обновляем время
-         */
+        $token = $tokenRepository->isExist($attributes['token'], $attributes['device_type_id']);
         if ($token) {
-            $token->update($attributes);
-            return $token;
+
+            /**
+             * токен уже есть, обновим время
+             */
+            if ($token->user_id == $user->id) {
+                $token->touch();
+                return $token;
+            }
+
+            /**
+             * этот токен принадлежит другому юзеру, удалим
+             */
+            $token->delete();
         }
 
         $token = Token::create($attributes);
