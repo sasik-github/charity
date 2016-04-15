@@ -28,13 +28,16 @@ Route::group(['middleware' => 'web'], function () {
 //    Route::get('/home', 'HomeController@index');
 
     Route::resource('/news', 'NewsesController');
-    Route::resource('/events', 'EventsController');
-    Route::resource('/volunteers', 'VolunteersController');
-    Route::resource('/organizers', 'OrganizersController');
-
     Route::get('/about', 'AboutController@getIndex');
-    Route::get('/about/edit', 'AboutController@getEdit');
-    Route::post('/about/edit', 'AboutController@postEdit');
+    
+    Route::group(['middleware' => 'admin'], function() {
+        Route::resource('/events', 'EventsController');
+        Route::resource('/volunteers', 'VolunteersController');
+        Route::resource('/organizers', 'OrganizersController');
+
+        Route::get('/about/edit', 'AboutController@getEdit');
+        Route::post('/about/edit', 'AboutController@postEdit');
+    });
 
 });
 

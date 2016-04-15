@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\ApiAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -30,6 +31,11 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+        ],
+
+        'admin' => [
+            'web',
+            Admin::class,
         ],
 
         'api' => [

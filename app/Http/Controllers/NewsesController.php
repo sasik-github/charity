@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Middleware\Admin;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,15 @@ class NewsesController extends BaseController
 {
 
     protected $resourcePrefix = 'newses.newses';
+
+    /**
+     * NewsesController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware(Admin::class, ['except' => 'index']);
+    }
+
 
     public function index()
     {

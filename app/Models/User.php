@@ -6,6 +6,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
+    const ADMIN = 1;
+
     public static $rules = [
         'lastname' => 'required|max:50',
         'firstname' => 'required|max:50',
@@ -74,5 +77,13 @@ class User extends Authenticatable
     public function tokens()
     {
         return $this->hasMany(Token::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->is_admin == self::ADMIN;
     }
 }

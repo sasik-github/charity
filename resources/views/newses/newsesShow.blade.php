@@ -1,3 +1,5 @@
+@inject('fileSystem', 'App\Files\FileSystem')
+
 @extends('layouts.app')
 
 @section('title')
@@ -5,7 +7,7 @@
 @endsection
 
 @section('content')
-    <img src="{{ $news->image }}" alt="" class="img-responsive">
+    <img src="{{ $fileSystem->path($news->image) }}" alt="" class="img-responsive">
     <h2>
         {{ $news->title }}
     </h2>
