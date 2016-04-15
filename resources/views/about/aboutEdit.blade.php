@@ -9,6 +9,7 @@
     <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 
     @include('common.errors')
+    <h1>Редакитрование раздела "О Компании"</h1>
 
     {!! Form::model($about, ['action' => 'AboutController@postEdit']) !!}
         <div class="row">
