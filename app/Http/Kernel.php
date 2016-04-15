@@ -34,7 +34,6 @@ class Kernel extends HttpKernel
         ],
 
         'admin' => [
-            'web',
             Admin::class,
         ],
 
