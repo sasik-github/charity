@@ -11,6 +11,9 @@
             </button>
 
             <!-- Branding Image -->
+            <a href='https://play.google.com/store/apps/details?id=ru.volunteer&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                <img class="google-badge-image" alt='Доступно на Google Play' src='/images/google-play-badge.png'/>
+            </a>
             <a class="navbar-brand" href="{{ url('/') }}">
                 Волонтер
             </a>
@@ -43,7 +46,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Выход</a></li>
                         </ul>
                     </li>
                 @endif

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Редакитрование раздела "О Компании"
+    Редактирование раздела "О Компании"
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             {!! Form::submit('Сохранить', ['class' => 'btn btn-primary']) !!}
-        </div>
+        </div>N
     {!! Form::close() !!}
 
 
