@@ -23,7 +23,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/news') }}">Новости</a></li>
-                <li><a href="{{ url('/about') }}">О Компании</a></li>
+                <li><a href="{{ url('/about') }}">О приложении</a></li>
                 @if (!Auth::guest())
                     @if (auth()->user()->isAdmin())
                         <li><a href="{{ url('/events') }}">События</a></li>
