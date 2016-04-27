@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="title">Загаловок</label>
+    <label for="title">Заголовок</label>
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
