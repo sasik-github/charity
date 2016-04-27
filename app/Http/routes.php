@@ -23,7 +23,14 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+
+
+    // \Illuminate\Routing\Router::auth();
+    Route::get('login', 'Auth\AuthController@showLoginForm');
+    Route::post('login', 'Auth\AuthController@login');
+    Route::get('logout', 'Auth\AuthController@logout');
+
+
     Route::get('/', 'NewsesController@index');
 //    Route::get('/home', 'HomeController@index');
 
@@ -37,6 +44,11 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('/about/edit', 'AboutController@getEdit');
         Route::post('/about/edit', 'AboutController@postEdit');
+
+        Route::get('/users/password', 'UsersController@getChangePassword');
+        Route::post('/users/password', 'UsersController@postChangePassword');
+
+
     });
 
 });

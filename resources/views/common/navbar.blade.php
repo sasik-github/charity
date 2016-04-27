@@ -38,7 +38,7 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Вход</a></li>
-                    <li><a href="{{ url('/register') }}">Регистрация</a></li>
+                    {{--<li><a href="{{ url('/register') }}">Регистрация</a></li>--}}
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -46,6 +46,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ action('UsersController@getChangePassword') }}">Сменить пароль</a></li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Выход</a></li>
                         </ul>
                     </li>
