@@ -52,7 +52,7 @@ class EventRepository
     private function handleImageName($attributes)
     {
         if (!array_key_exists('filename', $attributes)) {
-            return null;
+            return '';
         }
 
         return $attributes['filename'][0];
