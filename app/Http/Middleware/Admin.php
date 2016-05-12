@@ -23,7 +23,12 @@ class Admin
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (!\Auth::user()->isAdmin()) {
+        $user = \Auth::user();
+
+        if (
+            $user
+            && !\Auth::user()->isAdmin()
+        ){
             return response('Unauthorized.', 401);
         }
 
