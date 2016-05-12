@@ -27,11 +27,12 @@ class Admin
 
         if (
             $user
-            && !\Auth::user()->isAdmin()
+            && \Auth::user()->isAdmin()
         ){
-            return response('Unauthorized.', 401);
+            return $next($request);
+
         }
 
-        return $next($request);
+        return response('Unauthorized.', 401);
     }
 }
