@@ -13,12 +13,12 @@
     <h1>Список событий</h1>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="form-group">
                 <a href="{{ route('events.create') }}" class="btn btn-primary">Создать</a>
             </div>
         </div>
-        <div class="col-sm-6 col-sm-push-3">
+        <div class="col-sm-4 col-sm-push-3">
             <div class="">
                 <label>
                     <select onChange="window.location.href=this.value" class="form-control">
