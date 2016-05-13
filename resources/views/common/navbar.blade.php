@@ -15,7 +15,7 @@
                 <img class="google-badge-image" alt='Доступно на Google Play' src='/images/google-play-badge.png'/>
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
-                ЯАКТИВИСТ
+                Я АКТИВИСТ
             </a>
         </div>
 
