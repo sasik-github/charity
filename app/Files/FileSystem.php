@@ -17,11 +17,9 @@ class FileSystem
 
     public function getFilename(UploadedFile $file)
     {
-        $filename = str_random(12);
+        $filename = uniqid();
         $dest = self::PATH_TO_FILES;
-
-        $filenameFull = $filename . "_" . $file->getClientOriginalName();
-        $filenameFull = str_replace("#", "_", $filenameFull);
+        $filenameFull = $filename . "." . $file->getClientOriginalExtension();
         $file->move($dest, $filenameFull);
         return $filenameFull;
     }
