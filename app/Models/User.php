@@ -12,7 +12,7 @@ class User extends Authenticatable
     public static $rules = [
         'lastname' => 'required|max:50',
         'firstname' => 'required|max:50',
-        'middlename' => 'required|max:50',
+//        'middlename' => 'required|max:50',
 //        'email' => 'required|email|max:255|unique:users',
         'email' => 'email|max:255|unique:users',
         'telephone' => 'required|min:10|max:10|unique:users',
@@ -26,7 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'firstname',
         'lastname',
-        'middlename',
+//        'middlename',
         'email',
         'telephone',
         'password',

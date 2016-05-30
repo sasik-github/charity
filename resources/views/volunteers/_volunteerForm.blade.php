@@ -9,11 +9,6 @@
 </div>
 
 <div class="form-group">
-    <label for="title">Отчество</label>
-    {!! Form::text('middlename', null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
     <label for="title">Телефон</label>
     {!! Form::tel('telephone', null, ['class' => 'form-control']) !!}
 </div>
