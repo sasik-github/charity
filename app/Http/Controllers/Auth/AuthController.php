@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -62,5 +63,26 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create($data);
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $messages = [
+            $this->loginUsername() . '.required' => 'Поле "телефон" обязательно',
+            'password.required' => 'Поле "пароль" обязательно',
+        ];
+
+        $this->validate($request,
+            [
+                $this->loginUsername() => 'required', 'password' => 'required',
+            ],
+            $messages
+        );
     }
 }
