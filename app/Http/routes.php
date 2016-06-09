@@ -69,6 +69,8 @@ Route::group(['prefix' => 'api/'], function() {
     Route::get('/auth/user-is-exist/{telephone}', 'API\AuthController@getUserIsExist');
     Route::post('/auth/reset-password/{telephone}', 'API\AuthController@postResetPassword');
 
+    Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
+
     Route::group(['middleware' => ['api']], function() {
 
         Route::get('authorize', 'API\VolunteersController@auth');
@@ -85,8 +87,6 @@ Route::group(['prefix' => 'api/'], function() {
         Route::post('events/reject/{event}', 'API\EventsController@rejectEvent');
 
         Route::post('events/grant/{event}', 'API\EventsController@grantPointsToVolunteers');
-
-        Route::get('organizers', 'API\OrganizersController@getAllOrganizers');
 
         Route::post('user/update', 'API\VolunteersController@update');
 
