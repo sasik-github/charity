@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a href='https://play.google.com/store/apps/details?id=ru.volunteer&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+            <a href='https://play.google.com/store/apps/details?id=ru.aktivist&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
                 <img class="google-badge-image" alt='Доступно на Google Play' src='/images/google-play-badge.png'/>
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
