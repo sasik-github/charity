@@ -64,9 +64,12 @@ class VolunteersController extends BaseController
      */
     public function auth(EventRepository $eventRepository)
     {
-
         $volunteer = $this->user->volunteer;
-        $this->user->has_events = $eventRepository->getAdministratedEventByVolunteerId($volunteer->id)->count() > 0;
+        $hasEvents = false;
+        if ($volunteer) {
+            $hasEvents = $eventRepository->getAdministratedEventByVolunteerId($volunteer->id)->count() > 0;
+        }
+        $this->user->has_events = $hasEvents;
         return $this->user;
     }
 
