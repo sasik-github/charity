@@ -31,8 +31,11 @@ class Admin
         ){
             return $next($request);
 
+        } else {
+            return redirect()
+                ->guest('login');
         }
 
-        return response('Unauthorized.', 401);
+//        return response('Unauthorized.', 401);
     }
 }
