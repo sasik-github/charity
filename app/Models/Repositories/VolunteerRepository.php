@@ -1,7 +1,9 @@
 <?php
 namespace App\Models\Repositories;
 
+use App\Containers\GrantPointsContainer;
 use App\Events\GrantPointsEvent;
+use App\Exceptions\VolunteerException;
 use App\Files\FileSystem;
 use App\Models\Event;
 use App\Models\Helpers\LevelUpChecker;
@@ -112,10 +114,18 @@ class VolunteerRepository
     /**
      * @param $volunteerIDs array массив Id
      * @param Event $event
+     * @return GrantPointsContainer
+     * @throws VolunteerException
      */
     public function grantPointsToVolunteers($volunteerIDs, Event $event)
     {
         $volunteers = $event->volunteers()->find($volunteerIDs);
+
+        $grantPointsContainer = new GrantPointsContainer();
+
+        if ($volunteers == null) {
+            throw new VolunteerException('Not found any volunteers for event id=' . $event->id);
+        }
 
         foreach ($volunteers as $volunteer) {
             /**
@@ -124,13 +134,16 @@ class VolunteerRepository
             $levelUpChecker = new LevelUpChecker($volunteer);
             $volunteer->visitEvent($event);
             $volunteer->save();
+            $grantPointsContainer->grantPoints();
             \Event::fire(new GrantPointsEvent($volunteer, $event));
 
             if ($levelUpChecker->isLevelUped()) {
                 $levelUpChecker->sendPushAboutNewLevel($volunteer);
+                $grantPointsContainer->lvlUp();
             }
         }
 
+        return $grantPointsContainer;
     }
 
     /**

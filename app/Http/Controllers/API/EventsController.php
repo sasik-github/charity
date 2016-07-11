@@ -252,10 +252,11 @@ class EventsController extends BaseController
      */
     public function grantPointsToVolunteers(Event $event, Request $request, VolunteerRepository $volunteerRepository)
     {
-        $volunteerIDs = $request->get('ids', []);
-        $volunteerRepository->grantPointsToVolunteers($volunteerIDs, $event);
 
-        return [];
+        $volunteerIDs = $request->get('ids', []);
+        $result = $volunteerRepository->grantPointsToVolunteers($volunteerIDs, $event);
+        
+        return $result->toArray();
     }
 
     /**
