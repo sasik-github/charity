@@ -133,4 +133,14 @@ class EventsController extends BaseController
         return redirect()
             ->action('EventsController@index');
     }
+
+    /**
+     * needed for ADMIN to tests
+     */
+    public function clearVisitedEvents()
+    {
+        \DB::table('rel_volunteer_event')
+            ->where('id','>=', 0)
+            ->update(['is_visited' => 0]);
+    }
 }
