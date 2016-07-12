@@ -1733,7 +1733,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sasik-github/gcm.git",
-                "reference": "1b8c98922204b7da545edb9b4e2df19397c188c3"
+                "reference": "6126403c286ad8e5dcbaea057abcd513094ec74f"
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.1",
@@ -1752,7 +1752,7 @@
                 }
             ],
             "description": "Google Cloud Messaging library",
-            "time": "2016-03-29 07:48:55"
+            "time": "2016-07-12 06:33:36"
         },
         {
             "name": "sasik-github/smsc-gateway",
