@@ -48,6 +48,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/users/password', 'UsersController@getChangePassword');
         Route::post('/users/password', 'UsersController@postChangePassword');
 
+        Route::get('events/grant/clear', function () {
+            DB::table('rel_volunteer_event')
+                ->where('id','>=', 0)
+                ->update(['is_visited' => 0]);
+        });
 
     });
 
@@ -88,8 +93,12 @@ Route::group(['prefix' => 'api/'], function() {
 
         Route::post('events/grant/{event}', 'API\EventsController@grantPointsToVolunteers');
 
+
         Route::post('user/update', 'API\VolunteersController@update');
 
         Route::post('token', 'API\TokensController@store');
     });
 });
+
+
+
