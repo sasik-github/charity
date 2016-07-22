@@ -1760,7 +1760,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sasik-github/smsc-gateway.git",
-                "reference": "72aba7b489b6d2e3ab5944e0abbe4152fdacf0e0"
+                "reference": "5a6979fa7534a3c1b54d1cccccd79be3e8e5f358"
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.1",
@@ -1778,7 +1778,7 @@
                     "email": "dart_sas@mail.ru"
                 }
             ],
-            "time": "2016-04-08 02:22:59"
+            "time": "2016-07-22 03:37:18"
         },
         {
             "name": "swiftmailer/swiftmailer",
