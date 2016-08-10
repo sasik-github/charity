@@ -71,6 +71,7 @@ class Event extends BaseModel
     {
         $res = parent::toArray();
         $res['type'] = 'event';
+        $res['volunteers_count'] = $this->volunteers->count();
         return $res;
     }
 
