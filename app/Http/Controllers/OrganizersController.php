@@ -33,7 +33,7 @@ class OrganizersController extends BaseController
     {
         $this->validate($request, Organizer::$rules);
 
-        $organizer = Organizer::create($request->all());
+        Organizer::create($request->all());
 
         return redirect()
             ->action('OrganizersController@index');
@@ -63,6 +63,19 @@ class OrganizersController extends BaseController
 
         $this->validate($request, Organizer::$rules);
         $organizer->update($request->all());
+
+        return redirect()
+            ->action('OrganizersController@index');
+    }
+
+    public function destroy($id)
+    {
+        /**
+         * @var $organizer Organizer
+         */
+        $organizer = Organizer::findOrFail($id);
+
+        $organizer->delete();
 
         return redirect()
             ->action('OrganizersController@index');
