@@ -45,6 +45,12 @@
 </div>
 
 <div class="form-group">
+    <label for="text">Фото</label>
+    {{--@include('common.fileUploader', ['obj' => isset($event) ? $event : null])--}}
+    <img id='image' src="/images/DSC_0277.jpg" alt="">
+</div>
+
+<div class="form-group">
     <label for="text">Организатор</label>
     {!! Form::select('organizer_id', $organizersRepos->getOrganizersForSelectbox(), null, ['class' => 'form-control']) !!}
 </div>

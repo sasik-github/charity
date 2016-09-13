@@ -18,7 +18,8 @@ elixir(function(mix) {
         .styles([
             '../../../public/css/app.css',
             'vendor/bootstrap-datetimepicker.min.css',
-            'vendor/dropzone.css'
+            'vendor/dropzone.css',
+            '../../../node_modules/cropperjs/dist/cropper.min.css',
         ]);
 
     mix.scripts(
@@ -26,6 +27,7 @@ elixir(function(mix) {
             '../../../node_modules/moment/min/moment-with-locales.min.js',
             'vendor/bootstrap-datetimepicker.min.js',
             'vendor/dropzone.js',
+            '../../../node_modules/cropperjs/dist/cropper.min.js',
             'fileuploader.js',
         ]
     );

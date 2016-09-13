@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "bootstrap-sass": "^3.0.0",
+    "cropperjs": "^0.8.1",
     "laravel-elixir": "^4.0.0",
     "moment": "^2.12.0"
   }
